@@ -1,50 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_start_qrcode_reader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Reader" />
-
-            <Button
-                android:id="@+id/btn_start_qrcode_generate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button" />
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/edt_qrcode_content"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="384dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
-        <ImageView
-            android:id="@+id/iv_generated_qrcode"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/idText"
+            android:layout_width="392dp"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="97dp" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="386dp"
+            android:layout_height="33dp"
+            android:text="아이디"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="64dp" />
+
+        <TextView
+            android:id="@+id/passwordText"
+            android:layout_width="383dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            tools:layout_editor_absoluteX="3dp"
+            tools:layout_editor_absoluteY="209dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="386dp"
+            android:layout_height="43dp"
+            android:text="비밀번호"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="166dp" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
