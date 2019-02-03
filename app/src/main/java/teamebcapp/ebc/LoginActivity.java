@@ -8,9 +8,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import teamebcapp.ebc.user.User;
+import teamebcapp.ebc.user.UserService;
 
 public class LoginActivity extends AppCompatActivity {
+
+
+    public static final Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://52.231.26.243:8000/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +35,56 @@ public class LoginActivity extends AppCompatActivity {
         final TextView registerButton= (TextView) findViewById(R.id.registerButton);
         final Button loginButton=(Button) findViewById(R.id.loginButton);
 
+/*
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String userID =idText.getText().toString();
-                final String userPassword=passwordText.getText().toString();
-
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
-        });
+        });*/
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
-                LoginActivity.this.startActivity(loginIntent);
-                }
+
+                String userID =idText.getText().toString();
+                String userPassword=passwordText.getText().toString();
+
+                UserService userService = retrofit.create(UserService.class);
+                Call<User> call = userService.GetUser(userID,userPassword);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User result= null;
+                        try {
+                            result = response.body();
+                        }catch (Exception e){
+                        }
+
+                        if(result==null){
+                            //토스트
+                        }
+                        else {
+                            if(result.UserSeq != 0) {
+                                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                LoginActivity.this.startActivity(loginIntent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call,Throwable t) {
+                        // handle failure
+                        call.cancel();
+                    }
+                });
+
+            }
             }
         );
     }
+
 }
+

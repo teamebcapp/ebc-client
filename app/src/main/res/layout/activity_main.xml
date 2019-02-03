@@ -41,6 +41,12 @@
             tools:layout_editor_absoluteX="3dp"
             tools:layout_editor_absoluteY="209dp" />
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="386dp"
@@ -49,4 +55,5 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="166dp" />
-    </LinearLayout>
+
+</LinearLayout>
