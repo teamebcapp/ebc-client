@@ -30,61 +30,54 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText idText=(EditText) findViewById(R.id.idText);
-        final EditText passwordText=(EditText) findViewById(R.id.passwordText);
-        final TextView registerButton= (TextView) findViewById(R.id.registerButton);
-        final Button loginButton=(Button) findViewById(R.id.loginButton);
+        final EditText idText = (EditText) findViewById(R.id.idText);
+        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        final Button registerButton = (Button) findViewById(R.id.registerButton);
+        final Button loginButton = (Button) findViewById(R.id.loginButton);
 
-/*
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
-        });*/
+        });
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String userID =idText.getText().toString();
-                String userPassword=passwordText.getText().toString();
+                String userID = idText.getText().toString();
+                String userPassword = passwordText.getText().toString();
 
                 UserService userService = retrofit.create(UserService.class);
-                Call<User> call = userService.GetUser(userID,userPassword);
+                Call<User> call = userService.GetUser(userID, userPassword);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        User result= null;
+                        User result = null;
                         try {
                             result = response.body();
-                        }catch (Exception e){
-                        }
-
-                        if(result==null){
+                            } catch (Exception e) {
+                            }
+                            if (result == null) {
                             //토스트
-                        }
-                        else {
-                            if(result.UserSeq != 0) {
+                            }
+                            else {
+                            if (result.UserSeq != 0) {
                                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(loginIntent);
-                            }
+                                }
                         }
-                    }
 
+                    }
                     @Override
-                    public void onFailure(Call<User> call,Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         // handle failure
                         call.cancel();
-                    }
+                        }
                 });
-
             }
-            }
-        );
+        });
     }
-
 }
-

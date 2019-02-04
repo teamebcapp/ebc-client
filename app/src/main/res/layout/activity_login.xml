@@ -13,7 +13,6 @@
         android:ems="10"
         android:hint="아이디"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="29dp" />
 
@@ -32,18 +31,14 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Login"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="168dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="168dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="회원가입"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="230dp"
-        tools:ignore="MissingConstraints" />
+        android:text="Button" />
 </LinearLayout>

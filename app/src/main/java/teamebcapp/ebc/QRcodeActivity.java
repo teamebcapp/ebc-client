@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,18 +25,21 @@ public class QRcodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
+        final Button btn_start_qrcode_reader = (Button) findViewById(R.id.btn_start_qrcode_reader);
+        final Button btn_start_qrcode_generate = (Button) findViewById(R.id.btn_start_qrcode_generate);
+        final EditText edt_qrcode_content= (EditText) findViewById(R.id.edt_qrcode_content);
 
-        findViewById(R.id.btn_start_qrcode_reader).setOnClickListener(new View.OnClickListener() {
+        btn_start_qrcode_reader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startQRCode();
             }
         });
 
-        findViewById(R.id.btn_start_qrcode_generate).setOnClickListener(new View.OnClickListener() {
+       btn_start_qrcode_generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String content = ((EditText) findViewById(R.id.edt_qrcode_content)).getText().toString();
+                String content = edt_qrcode_content.getText().toString();
                 if (content.isEmpty()) {
                     Toast.makeText(QRcodeActivity.this, "문자를 입력해주세요", Toast.LENGTH_LONG).show();
                 } else {

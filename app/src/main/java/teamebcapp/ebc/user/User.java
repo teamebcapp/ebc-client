@@ -1,7 +1,8 @@
 package teamebcapp.ebc.user;
 
-public class User {
+import com.google.gson.annotations.SerializedName;
 
+public class User {
     public int UserSeq;
     public String UserId;
     public String Password;
