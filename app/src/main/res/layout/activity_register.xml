@@ -11,10 +11,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="뒤로가기" />
+
         <EditText
             android:id="@+id/idText"
             android:layout_width="350dp"
-            android:layout_height="53dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="아이디"
             android:inputType="textPersonName"
@@ -24,31 +30,66 @@
         <EditText
             android:id="@+id/passwordText"
             android:layout_width="350dp"
-            android:layout_height="53dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="비밀번호"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="94dp" />
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/passwordText2"
             android:layout_width="350dp"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="비밀번호확인"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="18dp"
-            tools:layout_editor_absoluteY="182dp" />
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/nameText"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            tools:text="이름" />
+            android:hint="이름"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/comText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="회사"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/posiText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="직책"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/dutyText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="직급"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/phoneText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="휴대폰번호(010-XXXX-XXXX)"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/mailText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="이메일"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/registerButton"

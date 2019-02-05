@@ -26,8 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText passwordText1 = (EditText) findViewById(R.id.passwordText);
         final EditText passwordText2 = (EditText) findViewById(R.id.passwordText2);
         final EditText nameText = (EditText) findViewById(R.id.nameText);
+        final EditText posiText = (EditText) findViewById(R.id.posiText);
+        final EditText comText = (EditText) findViewById(R.id.comText);
+        final EditText dutyText = (EditText) findViewById(R.id.dutyText);
+        final EditText phoneText =(EditText) findViewById(R.id.phoneText);
+        final EditText mailText = (EditText) findViewById(R.id.mailText);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
-
+        final Button backButton = (Button) findViewById(R.id.backButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,15 +41,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String userPassword1 = passwordText1.getText().toString();
                 String userPassword2 = passwordText2.getText().toString();
                 String userName = nameText.getText().toString();
-
+                String userCom = comText.getText().toString();
+                String userPos = posiText.getText().toString();
+                String userPhone = phoneText.getText().toString();
+                String userduty = dutyText.getText().toString();
+                String usermail = mailText.getText().toString();
 
                 boolean equals = false;
 
-                if (userPassword1.equals(userPassword2)) {
+                if (userPassword1.equals(userPassword2)) { //비밀번호확인용
                     equals=true;
 
                     UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-                    Call<User> call = userService.PostUser(userID, userPassword1);
+                    User user = new User (userID, userPassword1,userName,userCom,userPos,userduty,userPhone,usermail);
+                    Call<User> call = userService.PostUser(user);
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
@@ -74,6 +84,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "비밀번호가 같지 않습니다", Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                RegisterActivity.this.startActivity(backIntent);
             }
         });
     }

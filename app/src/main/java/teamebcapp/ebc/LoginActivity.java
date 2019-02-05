@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import retrofit2.Call;
@@ -18,12 +19,6 @@ import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
 public class LoginActivity extends AppCompatActivity {
-
-
-    public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://52.231.26.243:8000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
@@ -50,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
                 String userID = idText.getText().toString();
                 String userPassword = passwordText.getText().toString();
 
-                UserService userService = retrofit.create(UserService.class);
+                UserService userService = teamebcapp.ebc.Retrofit.retrofit.create
+                        (UserService.class);
                 Call<User> call = userService.GetUser(userID, userPassword);
                 call.enqueue(new Callback<User>() {
                     @Override
@@ -65,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else {
                             if (result.UserSeq != 0) {
+                                Toast.makeText(getApplicationContext(),"로그인되었습니다",Toast.LENGTH_SHORT).show();
                                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(loginIntent);
                                 }
