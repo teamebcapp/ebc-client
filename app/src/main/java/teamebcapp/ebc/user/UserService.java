@@ -15,6 +15,17 @@ public interface UserService {
     Call<User> GetUser(
             @Query("userid") String UserId,
             @Query("password") String Password);
-    
+
+    @GET("user")
+    Call<User> GetMyUser(
+            @Query("UserId") String UserId,
+            @Query("Password") String Password,
+            @Query("Name") String Name,
+            @Query("Company") String Company,
+            @Query("Position") String Position,
+            @Query("Duty") String Duty,
+            @Query("Phone") String Phone,
+            @Query("Email") String Email);
+
 
 }
