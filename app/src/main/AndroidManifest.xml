@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".QRcodeActivity" />
+        <activity android:name=".BC.BCactivity" />
+        <activity android:name=".BC.manageBCactivity" />
+        <activity android:name=".BC.registerBCactivity"></activity>
     </application>
 
 </manifest>
