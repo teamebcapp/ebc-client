@@ -10,6 +10,10 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class Fragment2 extends Fragment {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
 
     public Fragment2() {

@@ -50,17 +50,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_tab2 :
                 // '버튼2' 클릭 시 '프래그먼트2' 호출
-                //callFragment(FRAGMENT2);
-                Intent loginIntent1 = new Intent(MainActivity.this, RegisterActivity.class);
-                MainActivity.this.startActivity(loginIntent1);
-
+                callFragment(FRAGMENT2);
                 break;
 
             case R.id.btn_tab3 :
                 // '버튼3' 클릭 시 '프래그먼트3' 호출
-                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                MainActivity.this.startActivity(loginIntent);
-                //callFragment(FRAGMENT3);
+                callFragment(FRAGMENT3);
                 break;
         }
     }
