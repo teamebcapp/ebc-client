@@ -1,16 +1,14 @@
 package teamebcapp.ebc;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import teamebcapp.ebc.Frag1.Fragment1;
+import teamebcapp.ebc.Frag2.Fragment2;
+import teamebcapp.ebc.Frag3_BC.Fragment3;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -25,9 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         // 위젯에 대한 참조
         btn_tab1 = (Button)findViewById(R.id.btn_tab1);

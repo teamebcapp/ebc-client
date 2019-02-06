@@ -1,6 +1,5 @@
-package teamebcapp.ebc;
+package teamebcapp.ebc.Frag1;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import teamebcapp.ebc.R;
 
 /**
  * A simple {@link Fragment} subclass.

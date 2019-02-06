@@ -3,13 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragment1">
-
+    tools:context="teamebcapp.ebc.Frag1.Fragment1">
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="프래그먼트 3" />
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/registerMyBC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내명함등록" />
+
+        <Button
+            android:id="@+id/manageBC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="명함관리" />
+
+    </LinearLayout>
 
 </FrameLayout>
