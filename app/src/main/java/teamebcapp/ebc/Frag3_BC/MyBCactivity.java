@@ -31,11 +31,10 @@ public class MyBCactivity extends AppCompatActivity {
         final EditText posiText = (EditText) findViewById(R.id.posiText);
         final EditText comText = (EditText) findViewById(R.id.comText);
         final EditText dutyText = (EditText) findViewById(R.id.dutyText);
-        final EditText phoneText =(EditText) findViewById(R.id.phoneText);
+        final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText mailText = (EditText) findViewById(R.id.mailText);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
         final Button cancelButton = (Button) findViewById(R.id.cancelButton);
-
 
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -52,24 +51,28 @@ public class MyBCactivity extends AppCompatActivity {
                 String usermail = mailText.getText().toString();
 
                 UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-                Call<User> call = userService.GetMyUser(userID, userPassword1,userName,userCom,userPos,userPhone,userduty,usermail);
+                Call<User> call = userService.GetMyUser(userID, userPassword1, userName, userCom, userPos, userPhone, userduty, usermail);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         User result = null;
-                        
+
                     }
+
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         // handle failure
                         call.cancel();
                     }
+                });
+
+            }
         });
 
 
-        cancelButton.setOnClickListener(new View.OnClickListener(){
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent registerMyBCIntent = new Intent(MyBCactivity.this, MyBCactivity.class);
                 MyBCactivity.this.startActivity(registerMyBCIntent);
             }
