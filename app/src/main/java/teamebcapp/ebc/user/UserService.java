@@ -18,8 +18,6 @@ public interface UserService {
 
     @GET("user")
     Call<User> GetMyUser(
-            @Query("UserId") String UserId,
-            @Query("Password") String Password,
             @Query("Name") String Name,
             @Query("Company") String Company,
             @Query("Position") String Position,

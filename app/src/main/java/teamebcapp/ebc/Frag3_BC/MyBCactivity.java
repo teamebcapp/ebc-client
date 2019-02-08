@@ -10,6 +10,7 @@ import android.widget.EditText;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import teamebcapp.ebc.LoginActivity;
 import teamebcapp.ebc.R;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
@@ -21,12 +22,6 @@ public class MyBCactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_bcactivity);
 
-        final EditText idText = (EditText) findViewById(R.id.idText);
-        idText.setText("");
-        final EditText passwordText1 = (EditText) findViewById(R.id.passwordText);
-        passwordText1.setText("");
-        //비밀번호확인 한번 받을거니?
-        //final EditText passwordText2 = (EditText) findViewById(R.id.passwordText2);
         final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText posiText = (EditText) findViewById(R.id.posiText);
         final EditText comText = (EditText) findViewById(R.id.comText);
@@ -36,35 +31,46 @@ public class MyBCactivity extends AppCompatActivity {
         final Button registerButton = (Button) findViewById(R.id.registerButton);
         final Button cancelButton = (Button) findViewById(R.id.cancelButton);
 
+        String[] asdf=((LoginActivity).LoginActivity.context).;
+        UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
+        Call<User> call = userService.GetUser(asdf[0],asdf[1]);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                String userName1=response.body().Name;
+                nameText.setText(userName1);
+                String userCom1=response.body().Company;
+                comText.setText(userCom1);
+                String userPos1=response.body().Position;
+                posiText.setText(userPos1);
+                String userPhone1=response.body().Phone;
+                phoneText.setText(userPhone1);
+                String userduty1=response.body().Duty;
+                dutyText.setText(userduty1);
+                String usermail1=response.body().Email;
+                mailText.setText(usermail1);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                // handle failure
+                call.cancel();
+            }
+        });
+
+        String userName = nameText.getText().toString();
+        String userCom = comText.getText().toString();
+        String userPos = posiText.getText().toString();
+        String userPhone = phoneText.getText().toString();
+        String userduty = dutyText.getText().toString();
+        String usermail = mailText.getText().toString();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userID = idText.getText().toString();
-                String userPassword1 = passwordText1.getText().toString();
-                //String userPassword2 = passwordText2.getText().toString();
-                String userName = nameText.getText().toString();
-                String userCom = comText.getText().toString();
-                String userPos = posiText.getText().toString();
-                String userPhone = phoneText.getText().toString();
-                String userduty = dutyText.getText().toString();
-                String usermail = mailText.getText().toString();
 
-                UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-                Call<User> call = userService.GetMyUser(userID, userPassword1, userName, userCom, userPos, userPhone, userduty, usermail);
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        User result = null;
 
-                    }
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        // handle failure
-                        call.cancel();
-                    }
-                });
 
             }
         });

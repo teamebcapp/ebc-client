@@ -1,5 +1,6 @@
 package teamebcapp.ebc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,11 +20,13 @@ import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
 public class LoginActivity extends AppCompatActivity {
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        context=this;
 
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        public static final String transuser;
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                         User result = null;
                         try {
                             result = response.body();
+                            transuser[0] =response.body().UserId;
+                            transuser[1]=response.body().Password;
                             } catch (Exception e) {
                             }
                             if (result == null) {

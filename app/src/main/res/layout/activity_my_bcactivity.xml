@@ -13,32 +13,6 @@
 
 
         <EditText
-            android:id="@+id/idText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="아이디"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="비밀번호"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/passwordText2"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="비밀번호확인"
-            android:inputType="textPassword" />
-
-        <EditText
             android:id="@+id/nameText"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
