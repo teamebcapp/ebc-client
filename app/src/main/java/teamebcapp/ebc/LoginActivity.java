@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        public static final String transuser;
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                         User result = null;
                         try {
                             result = response.body();
-                            transuser[0] =response.body().UserId;
-                            transuser[1]=response.body().Password;
+                            InfoUser.transuserID=response.body().UserId;
+                            InfoUser.transuserPass=response.body().Password;
                             } catch (Exception e) {
                             }
                             if (result == null) {

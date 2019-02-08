@@ -10,6 +10,7 @@ import android.widget.EditText;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.LoginActivity;
 import teamebcapp.ebc.R;
 import teamebcapp.ebc.user.User;
@@ -31,9 +32,9 @@ public class MyBCactivity extends AppCompatActivity {
         final Button registerButton = (Button) findViewById(R.id.registerButton);
         final Button cancelButton = (Button) findViewById(R.id.cancelButton);
 
-        String[] asdf=((LoginActivity).LoginActivity.context).;
+
         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userService.GetUser(asdf[0],asdf[1]);
+        Call<User> call = userService.GetUser(InfoUser.transuserID,InfoUser.transuserPass);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -58,17 +59,30 @@ public class MyBCactivity extends AppCompatActivity {
             }
         });
 
-        String userName = nameText.getText().toString();
-        String userCom = comText.getText().toString();
-        String userPos = posiText.getText().toString();
-        String userPhone = phoneText.getText().toString();
-        String userduty = dutyText.getText().toString();
-        String usermail = mailText.getText().toString();
+        final String userName = nameText.getText().toString();
+        final String userCom = comText.getText().toString();
+        final String userPos = posiText.getText().toString();
+        final String userPhone = phoneText.getText().toString();
+        final String userduty = dutyText.getText().toString();
+        final String usermail = mailText.getText().toString();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
+                Call<User> call = userService.GetMyUser(userName,userCom,userPos,userPhone,userduty,usermail);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
 
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        // handle failure
+                        call.cancel();
+                    }
+                });
 
 
 
