@@ -52,30 +52,20 @@ public class RegisterActivity extends AppCompatActivity {
                 if (userPassword1.equals(userPassword2)) { //비밀번호확인용
                     equals=true;
 
-                    UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-                    User user = new User (userID, userPassword1,userName,userCom,userPos,userduty,userPhone,usermail);
-                    Call<User> call = userService.PostUser(user);
+                    UserService userServiceregi = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
+                    User user = new User (userID, userPassword1,userName,userCom,userPos,userduty,userPhone,usermail,null,null,null,null,null);
+                    Call<User> call = userServiceregi.PostUser(user);
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
-                            User result = null;
-                            try {
-                                result = response.body();
-                            } catch (Exception e) {
-                            }
-                            if (result == null) {
-                                //토스트
-                                Toast.makeText(getApplicationContext(), "제대로 입력되지 않았습니다", Toast.LENGTH_LONG).show();
-                            } else if (result.UserSeq != 0) {
-                                Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                RegisterActivity.this.startActivity(registerIntent);
-                            }
+                            Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            RegisterActivity.this.startActivity(registerIntent);
                         }
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
                             // handle failure
-                            Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 틀렸거나 서버문제입니다", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "서버문제입니다", Toast.LENGTH_LONG).show();
                             call.cancel();
                         }
                     });

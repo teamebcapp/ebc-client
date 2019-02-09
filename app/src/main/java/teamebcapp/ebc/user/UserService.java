@@ -35,7 +35,7 @@ public interface UserService {
             @Body ModiUser modiuser);
 */
     //명함등록
-    @POST("bc")
-    Call<CreateUser> PutUser(
+    @PUT("bc")
+    Call<CreateUser> PutBC(
             @Body CreateUser createuser);
 }

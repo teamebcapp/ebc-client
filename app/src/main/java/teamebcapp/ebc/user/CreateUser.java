@@ -1,10 +1,8 @@
 package teamebcapp.ebc.user;
 
-import java.util.List;
-
 public class CreateUser
 {
-    public String ID;
+    public String UserID;
     public String Name;
     public String Company;
     public String Position;
@@ -16,15 +14,19 @@ public class CreateUser
     public String Tel;
     public String Fax;
     public String Address;
-    final List<Result> Result=null;
-    public class Result {
-        String ResultMessage;
-        String ResultCode;
-        String ResultCount;
+
+    public String ResultMessage;
+    public String ResultCode;
+    public String ResultCount;
+
+    public CreateUser(String ResultMessage, String ResultCode,String ResultCount){
+        this.ResultMessage=ResultMessage;
+        this.ResultCode=ResultCode;
+        this.ResultCount=ResultCount;
     }
-    public CreateUser(String ID, String Name, String Company, String Position, String Duty, String Phone, String Email,
+    public CreateUser(String UserID, String Name, String Company, String Position, String Duty, String Phone, String Email,
                       String Depart,String Team, String Tel, String Fax, String Address){
-        this.ID=ID;
+        this.UserID=UserID;
         this.Name =Name;
         this.Company =Company;
         this.Position =Position;

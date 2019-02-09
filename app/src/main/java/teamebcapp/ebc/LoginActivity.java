@@ -43,34 +43,42 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userID = idText.getText().toString();
-                String userPassword = passwordText.getText().toString();
+                final String userID = idText.getText().toString();
+                final String userPassword = passwordText.getText().toString();
 
-                UserService userService = teamebcapp.ebc.Retrofit.retrofit.create
+
+                UserService userServicelogin = teamebcapp.ebc.Retrofit.retrofit.create
                         (UserService.class);
-                Call<User> call = userService.GetUser(userID, userPassword);
+                Call<User> call = userServicelogin.GetUser(userID, userPassword);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        User result = null;
                         try {
                             InfoUser.transuserID = response.body().UserId;
                             InfoUser.transuserPass = response.body().Password;
+
+                            if (userID.equals(InfoUser.transuserID) && userPassword.equals(InfoUser.transuserPass)) {
+                                Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
+                                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                LoginActivity.this.startActivity(loginIntent);
+                            }
+
+                            else{
+                                Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show();
+                            }
                         } catch (Exception e) {
                         }
-                        Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
-                        Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
-                        LoginActivity.this.startActivity(loginIntent);
+
                     }
 
 
-                @Override
-                public void onFailure (Call < User > call, Throwable t){
-                    // handle failure
-                    call.cancel();
-                }
-            });
-        }
-    });
-}
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        // handle failure
+                        call.cancel();
+                    }
+                });
+            }
+        });
+    }
 }
