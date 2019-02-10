@@ -15,15 +15,7 @@ public class CreateUser
     public String Fax;
     public String Address;
 
-    public String ResultMessage;
-    public String ResultCode;
-    public String ResultCount;
 
-    public CreateUser(String ResultMessage, String ResultCode,String ResultCount){
-        this.ResultMessage=ResultMessage;
-        this.ResultCode=ResultCode;
-        this.ResultCount=ResultCount;
-    }
     public CreateUser(String UserID, String Name, String Company, String Position, String Duty, String Phone, String Email,
                       String Depart,String Team, String Tel, String Fax, String Address){
         this.UserID=UserID;

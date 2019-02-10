@@ -1,5 +1,7 @@
 package teamebcapp.ebc.user;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -30,12 +32,23 @@ public interface UserService {
             @Query("Email") String Email);
 
     //명함수정
-   /* @PUT("bc")
-    Call<ModiUser> PutUser(
+    @POST("bc")
+    Call<User> PutBC(
             @Body ModiUser modiuser);
-*/
+
     //명함등록
-    @PUT("bc")
-    Call<CreateUser> PutBC(
-            @Body CreateUser createuser);
+    @POST("bc")
+    Call<User> PostBC(
+            @Body User user);
+
+    //명함리스트조회
+    //id입력시 가지고있는 명함 조회가능
+    @GET("bcs")
+    Call<List<User>> GetBCs(
+            @Query("userid") String userid);
+
+    //명함조회
+    @GET("bc")
+    Call<User>ListBC(
+            @Query("bcSeq") int bcSeq);
 }

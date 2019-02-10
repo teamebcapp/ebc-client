@@ -6,5 +6,22 @@
     tools:context="teamebcapp.ebc.Frag1.Fragment1">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="명함등록" />
+
+        <Button
+            android:id="@+id/listButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="명함목록조회" />
+    </LinearLayout>
 
 </FrameLayout>

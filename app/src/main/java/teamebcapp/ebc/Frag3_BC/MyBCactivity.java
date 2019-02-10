@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +44,7 @@ public class MyBCactivity extends AppCompatActivity {
         final Button registerButton = findViewById(R.id.registerButton);
         final Button cancelButton = findViewById(R.id.cancelButton);
 
-
+        //taking your info that you registered the ID
         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
         Call<User> call = userService.GetUser(InfoUser.transuserID, InfoUser.transuserPass);
         call.enqueue(new Callback<User>() {
@@ -61,7 +62,7 @@ public class MyBCactivity extends AppCompatActivity {
                 dutyText.setText(userduty1);
                 String usermail1 = response.body().Email;
                 mailText.setText(usermail1);
-                String userdepart1 = response.body().Depart;
+/*                String userdepart1 = response.body().Depart;
                 departText.setText(userdepart1);
                 String usertel1= response.body().Tel;
                 telText.setText(usertel1);
@@ -70,8 +71,9 @@ public class MyBCactivity extends AppCompatActivity {
                 String userfax1= response.body().Fax;
                 faxText.setText(userfax1);
                 String useradd1= response.body().Address;
-                addText.setText(useradd1);
+                addText.setText(useradd1);*/
             }
+
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
@@ -99,13 +101,13 @@ public class MyBCactivity extends AppCompatActivity {
                 final String userAdd = addText.getText().toString();
 
                 UserService userServiceMyBC = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-                CreateUser UserCall = new CreateUser(userID, userName, userCom, userPos, userDuty, userPhone, userMail, userDepart, userTeam, userTel, userFax, userAdd);
-                Call<CreateUser> call = userServiceMyBC.PutBC(UserCall);
-                call.enqueue(new Callback<CreateUser>() {
+                User UserCall = new User(userID, userName, userCom, userPos, userDuty, userPhone, userMail, userDepart, userTeam, userTel, userFax, userAdd);
+                Call<User> call = userServiceMyBC.PostBC(UserCall);
+                call.enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<CreateUser> call, Response<CreateUser> response) {
+                    public void onResponse(Call<User> call, Response<User> response) {
                         try {
-                            CreateUser result= response.body();
+                            Toast.makeText(getApplicationContext(), "명함을 등록했습니다", Toast.LENGTH_SHORT).show();
                             Intent cancelMyBCIntent = new Intent(MyBCactivity.this, MainActivity.class);
                             MyBCactivity.this.startActivity(cancelMyBCIntent);
                         } catch (Exception e) {
@@ -113,7 +115,7 @@ public class MyBCactivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<CreateUser> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         // handle failure
                         call.cancel();
                     }
@@ -126,6 +128,7 @@ public class MyBCactivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "명함등록을 취소했습니다", Toast.LENGTH_SHORT).show();
                 Intent cancelMyBCIntent = new Intent(MyBCactivity.this, MainActivity.class);
                 MyBCactivity.this.startActivity(cancelMyBCIntent);
             }

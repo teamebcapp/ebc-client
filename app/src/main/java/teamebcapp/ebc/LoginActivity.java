@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                             InfoUser.transuserID = response.body().UserId;
                             InfoUser.transuserPass = response.body().Password;
 
-                            if (userID.equals(InfoUser.transuserID) && userPassword.equals(InfoUser.transuserPass)) {
+                            if (response.isSuccessful()==true) {
                                 Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
                                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(loginIntent);

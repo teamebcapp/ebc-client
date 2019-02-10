@@ -22,9 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".QRcodeActivity" />
-        <activity android:name=".Frag3_BC.manageBCactivity" />
+        <activity android:name=".Frag2.manageBCactivity" />
         <activity android:name=".Frag2.registerBCactivity" />
-        <activity android:name=".Frag3_BC.MyBCactivity"></activity>
+        <activity android:name=".Frag3_BC.MyBCactivity" />
+        <activity android:name=".Frag2.ListBCActivity"></activity>
     </application>
 
 </manifest>
