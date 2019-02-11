@@ -25,7 +25,8 @@
         <activity android:name=".Frag2.manageBCactivity" />
         <activity android:name=".Frag2.registerBCactivity" />
         <activity android:name=".Frag3_BC.MyBCactivity" />
-        <activity android:name=".Frag2.ListBCActivity"></activity>
+        <activity android:name=".Frag2.ListBCActivity" />
+        <activity android:name=".Frag3_BC.MyBCListActivity"></activity>
     </application>
 
 </manifest>

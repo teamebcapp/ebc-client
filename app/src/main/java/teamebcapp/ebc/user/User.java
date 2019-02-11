@@ -4,7 +4,7 @@ import javax.xml.transform.Result;
 
 public class User {
     public int UserSeq;
-    public int bcSeq;
+    public int BcSeq;
     public String UserId;
     public String Password;
     public String Name;
@@ -19,7 +19,7 @@ public class User {
     public String Fax;
     public String Address;
 
-    public String ResultMessage;
+    /*public String ResultMessage;
     public String ResultCode;
     public String ResultCount;
 
@@ -27,7 +27,7 @@ public class User {
         this.ResultMessage = ResultMessage;
         this.ResultCode = ResultCode;
         this.ResultCount = ResultCount;
-    }
+    }*/
 
     //for login
     public User(String UserId, String Password, String Name, String Company, String Position, String Duty, String Phone, String Email,
@@ -66,8 +66,8 @@ public class User {
     }
 
     //retrieve BC
-    public User(int bcSeq) {
-        this.bcSeq = bcSeq;
+    public User(int BcSeq) {
+        this.BcSeq = BcSeq;
     }
 
     //BC list to get bcSeq

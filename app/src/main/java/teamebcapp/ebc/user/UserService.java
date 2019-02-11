@@ -41,14 +41,14 @@ public interface UserService {
     Call<User> PostBC(
             @Body User user);
 
-    //명함리스트조회
+    //사용자 명함리스트조회
     //id입력시 가지고있는 명함 조회가능
     @GET("bcs")
-    Call<List<User>> GetBCs(
+    Call<List<User>> GetUserBCs(
             @Query("userid") String userid);
 
     //명함조회
     @GET("bc")
-    Call<User>ListBC(
+    Call<User>ListUserBC(
             @Query("bcSeq") int bcSeq);
 }
