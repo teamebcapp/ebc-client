@@ -41,21 +41,21 @@ public class MyAdapter extends BaseAdapter {
         /* 'listview_custom' Layout을 inflate하여 convertView 참조 획득 */
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_custom, parent, false);
+            convertView = inflater.inflate(R.layout.activity_my_bclist, parent, false);
         }
 
         /* 'listview_custom'에 정의된 위젯에 대한 참조 획득 */
-        ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img) ;
+/*        ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img) ;
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name) ;
-        TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents) ;
+        TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents) ;*/
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
         MyItem myItem = getItem(position);
 
         /* 각 위젯에 세팅된 아이템을 뿌려준다 */
-        iv_img.setImageDrawable(myItem.getIcon());
+/*        iv_img.setImageDrawable(myItem.getIcon());
         tv_name.setText(myItem.getName());
-        tv_contents.setText(myItem.getContents());
+        tv_contents.setText(myItem.getContents());*/
 
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다..)  */
 

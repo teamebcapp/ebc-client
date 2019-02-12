@@ -13,6 +13,10 @@ import teamebcapp.ebc.Frag3_BC.Fragment3;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    static   {
+        System . loadLibrary ( "native-lib" ) ;
+    }
+
     private final int FRAGMENT1 = 1;
     private final int FRAGMENT2 = 2;
     private final int FRAGMENT3 = 3;
