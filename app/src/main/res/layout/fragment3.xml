@@ -17,6 +17,12 @@
             android:text="내명함등록" />
 
         <Button
+            android:id="@+id/MyBCList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내명함관리" />
+
+        <Button
             android:id="@+id/manageBC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

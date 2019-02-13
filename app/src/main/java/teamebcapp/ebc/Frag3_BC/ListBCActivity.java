@@ -1,4 +1,4 @@
-package teamebcapp.ebc.Frag2;
+package teamebcapp.ebc.Frag3_BC;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

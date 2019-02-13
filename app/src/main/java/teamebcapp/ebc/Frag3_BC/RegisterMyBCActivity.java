@@ -15,12 +15,11 @@ import retrofit2.Response;
 import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
-import teamebcapp.ebc.user.CreateUser;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
 
-public class MyBCactivity extends AppCompatActivity {
+public class RegisterMyBCActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +107,8 @@ public class MyBCactivity extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         try {
                             Toast.makeText(getApplicationContext(), "명함을 등록했습니다", Toast.LENGTH_SHORT).show();
-                            Intent cancelMyBCIntent = new Intent(MyBCactivity.this, MainActivity.class);
-                            MyBCactivity.this.startActivity(cancelMyBCIntent);
+                            Intent cancelMyBCIntent = new Intent(RegisterMyBCActivity.this, MainActivity.class);
+                            RegisterMyBCActivity.this.startActivity(cancelMyBCIntent);
                         } catch (Exception e) {
                         }
                     }
@@ -129,8 +128,8 @@ public class MyBCactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "명함등록을 취소했습니다", Toast.LENGTH_SHORT).show();
-                Intent cancelMyBCIntent = new Intent(MyBCactivity.this, MainActivity.class);
-                MyBCactivity.this.startActivity(cancelMyBCIntent);
+                Intent cancelMyBCIntent = new Intent(RegisterMyBCActivity.this, MainActivity.class);
+                RegisterMyBCActivity.this.startActivity(cancelMyBCIntent);
             }
         });
     }

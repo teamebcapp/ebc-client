@@ -33,7 +33,7 @@ public class Fragment3 extends Fragment {
         registerBC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerMyBCIntent = new Intent(getActivity(), MyBCactivity.class);
+                Intent registerMyBCIntent = new Intent(getActivity(), RegisterMyBCActivity.class);
                 getActivity().startActivity(registerMyBCIntent);
             }
 

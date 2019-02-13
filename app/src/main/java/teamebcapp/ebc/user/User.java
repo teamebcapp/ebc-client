@@ -70,6 +70,7 @@ public class User {
         this.BcSeq = BcSeq;
     }
 
+
     //BC list to get bcSeq
     public User(String UserId) {
         this.UserId = UserId;
