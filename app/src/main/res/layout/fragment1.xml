@@ -14,17 +14,26 @@
         android:text="프래그먼트 1" />
 
     <Button
-        android:id="@+id/QRgenerator"
+        android:id="@+id/btn_start_qrcode_generate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="QR코드 생성" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edt_qrcode_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="프래그먼트1" />
+
+
+    <ImageView
+        android:id="@+id/iv_generated_qrcode"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center" />
+
+
 
 </FrameLayout>

@@ -21,12 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QRcodeActivity" />
         <activity android:name=".Frag2.manageBCactivity" />
         <activity android:name=".Frag2.registerBCactivity" />
         <activity android:name=".Frag3_BC.RegisterMyBCActivity" />
         <activity android:name=".Frag3_BC.ListBCActivity" />
-        <activity android:name=".Frag3_BC.MyBCListActivity"></activity>
+        <activity android:name=".Frag3_BC.MyBCListActivity" />
+        <activity android:name=".Frag3_BC.MyBCPutActivity"></activity>
     </application>
 
 </manifest>

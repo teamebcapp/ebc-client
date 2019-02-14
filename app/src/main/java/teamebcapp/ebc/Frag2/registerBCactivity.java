@@ -1,20 +1,28 @@
 package teamebcapp.ebc.Frag2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
-import teamebcapp.ebc.user.CreateUser;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
@@ -24,6 +32,18 @@ public class registerBCactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_bcactivity);
+
+
+        final Button btn_start_qrcode_reader = (Button) findViewById(R.id.btn_start_qrcode_reader);
+
+        btn_start_qrcode_reader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startQRCode();
+            }
+        });
+
+
         final EditText idText= findViewById(R.id.idText);
         final EditText nameText = findViewById(R.id.nameText);
         final EditText posiText = findViewById(R.id.posiText);
@@ -91,5 +111,23 @@ public class registerBCactivity extends AppCompatActivity {
                 registerBCactivity.this.startActivity(cancelMyBCIntent);
             }
         });
+    }
+
+    public void startQRCode() {
+        new IntentIntegrator(this).initiateScan();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == IntentIntegrator.REQUEST_CODE) {
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            if (result == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

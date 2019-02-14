@@ -2,132 +2,146 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/itemidText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/itemmailText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="이메일"
-            android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/itemregisterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="대표등록"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="263dp" />
 
-        <TextView
-            android:id="@+id/itemfaxText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="팩스"
-            android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/putButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="명함수정" />
 
-        <TextView
-            android:id="@+id/itemaddText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="주소"
-            android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/itemcancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="취소"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="263dp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/itemtelText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="전화번호"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemposiText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="직책"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemteamText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="팀"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemdutyText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="직급"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemnameText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="이름"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemphoneText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="휴대폰번호(010-XXXX-XXXX)"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemdepartText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="부서"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/itemcomText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="회사"
-            android:inputType="textPersonName" />
-    </LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="58dp">
 
-        <Button
-            android:id="@+id/itemregisterButton"
-            android:layout_width="352dp"
-            android:layout_height="44dp"
-            android:layout_weight="1"
-            android:text="대표등록"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="263dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/itemcancelButton"
-            android:layout_width="352dp"
-            android:layout_height="44dp"
-            android:layout_weight="1"
-            android:text="취소"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="263dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/itemcomText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="회사"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemnameText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="이름"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemphoneText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="휴대폰번호(010-XXXX-XXXX)"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemmailText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="이메일"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemfaxText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="팩스"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemaddText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="주소"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemidText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="ID" />
+
+            <TextView
+                android:id="@+id/itemtelText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="전화번호"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemposiText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="직책"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemteamText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="팀"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemdutyText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="직급"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/itemdepartText"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="부서"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
+

@@ -9,13 +9,18 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.R;
+import teamebcapp.ebc.user.User;
+import teamebcapp.ebc.user.UserService;
 
 public class MyAdapter extends BaseAdapter {
 
-    /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<MyItem> mItems = new ArrayList<>();
 
     @Override
@@ -57,13 +62,13 @@ public class MyAdapter extends BaseAdapter {
         TextView faxText = convertView.findViewById(R.id.itemfaxText);
         TextView addText = convertView.findViewById(R.id.itemaddText);
 
-
+        Button putButton = convertView.findViewById(R.id.putButton);
         Button registerButton = convertView.findViewById(R.id.itemregisterButton);
         Button cancelButton = convertView.findViewById(R.id.itemcancelButton);
 
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
-        MyItem myItem = mItems.get(position);
+        final MyItem myItem = mItems.get(position);
 
         /* 각 위젯에 세팅된 아이템을 뿌려준다 */
         idText.setText(myItem.getUserId());
@@ -80,10 +85,38 @@ public class MyAdapter extends BaseAdapter {
         addText.setText(myItem.getAddress());
 
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다..)  */
+        putButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){/*
+                UserService userService= teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
+
+
+                Call<User> call = userService.PutBC(myItem.BcSeq);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+                        try {
+                            response.body().BcSeq
+
+
+                        } catch (Exception e) {
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        // handle failure
+                        call.cancel();
+                    }
+                });*/
+            }
+        });
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //대표설정
+
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {

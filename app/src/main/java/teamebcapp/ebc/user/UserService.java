@@ -21,6 +21,7 @@ public interface UserService {
             @Query("userid") String UserId,
             @Query("password") String Password);
 
+    //post시 로그인정보 받아오기
     @GET("user")
     Call<User> GetUserInfo(
             @Query("userid") String UserId);
@@ -36,9 +37,9 @@ public interface UserService {
             @Query("Email") String Email);
 
     //명함수정
-    @POST("bc")
+    @PUT("bc")
     Call<User> PutBC(
-            @Body ModiUser modiuser);
+            @Query("bcSeq")int bcSeq);
 
     //명함등록
     @POST("bc")
