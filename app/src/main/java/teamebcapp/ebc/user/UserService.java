@@ -21,6 +21,10 @@ public interface UserService {
             @Query("userid") String UserId,
             @Query("password") String Password);
 
+    @GET("user")
+    Call<User> GetUserInfo(
+            @Query("userid") String UserId);
+
     //내정보조회
     @GET("user")
     Call<User> GetMyUser(

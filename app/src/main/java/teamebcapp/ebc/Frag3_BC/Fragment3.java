@@ -27,8 +27,8 @@ public class Fragment3 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment3, null);
 
-        Button registerBC = (Button) view.findViewById(R.id.registerMyBC);
-
+        Button registerBC = view.findViewById(R.id.registerMyBC);
+        Button MyBCList =view.findViewById(R.id.MyBCList);
 
         registerBC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +37,14 @@ public class Fragment3 extends Fragment {
                 getActivity().startActivity(registerMyBCIntent);
             }
 
+        });
+
+        MyBCList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent MyBCListIntent= new Intent(getActivity(),MyBCListActivity.class);
+                getActivity().startActivity(MyBCListIntent);
+            }
         });
         return view;
 

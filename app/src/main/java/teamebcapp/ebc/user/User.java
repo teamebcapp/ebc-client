@@ -1,7 +1,5 @@
 package teamebcapp.ebc.user;
 
-import javax.xml.transform.Result;
-
 public class User {
     public int UserSeq;
     public int BcSeq;

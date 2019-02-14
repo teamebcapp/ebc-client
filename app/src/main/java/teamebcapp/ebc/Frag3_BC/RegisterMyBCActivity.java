@@ -24,16 +24,16 @@ public class RegisterMyBCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_bcactivity);
+        setContentView(R.layout.activity_register_my_bcactivity);
 
-        final TextView idText = (TextView) findViewById(R.id.idText);
+        final TextView idText = findViewById(R.id.idText);
         idText.setText(InfoUser.transuserID);
-        final EditText nameText = (EditText) findViewById(R.id.nameText);
-        final EditText posiText = (EditText) findViewById(R.id.posiText);
-        final EditText comText = (EditText) findViewById(R.id.comText);
-        final EditText dutyText = (EditText) findViewById(R.id.dutyText);
-        final EditText phoneText = (EditText) findViewById(R.id.phoneText);
-        final EditText mailText = (EditText) findViewById(R.id.mailText);
+        final EditText nameText = findViewById(R.id.nameText);
+        final EditText posiText = findViewById(R.id.posiText);
+        final EditText comText = findViewById(R.id.comText);
+        final EditText dutyText = findViewById(R.id.dutyText);
+        final EditText phoneText =  findViewById(R.id.phoneText);
+        final EditText mailText = findViewById(R.id.mailText);
         final EditText departText = findViewById(R.id.departText);
         final EditText teamText = findViewById(R.id.teamText);
         final EditText telText = findViewById(R.id.telText);
@@ -45,7 +45,7 @@ public class RegisterMyBCActivity extends AppCompatActivity {
 
         //taking your info that you registered the ID
         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userService.GetUser(InfoUser.transuserID, InfoUser.transuserPass);
+        Call<User> call = userService.GetUserInfo(InfoUser.transuserID);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -60,18 +60,7 @@ public class RegisterMyBCActivity extends AppCompatActivity {
                 String userduty1 = response.body().Duty;
                 dutyText.setText(userduty1);
                 String usermail1 = response.body().Email;
-                mailText.setText(usermail1);
-/*                String userdepart1 = response.body().Depart;
-                departText.setText(userdepart1);
-                String usertel1= response.body().Tel;
-                telText.setText(usertel1);
-                String userteam1= response.body().Team;
-                teamText.setText(userteam1);
-                String userfax1= response.body().Fax;
-                faxText.setText(userfax1);
-                String useradd1= response.body().Address;
-                addText.setText(useradd1);*/
-            }
+                mailText.setText(usermail1);}
 
 
             @Override

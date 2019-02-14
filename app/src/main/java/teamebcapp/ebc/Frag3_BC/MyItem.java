@@ -1,7 +1,5 @@
 package teamebcapp.ebc.Frag3_BC;
 
-import android.graphics.drawable.Drawable;
-
 public class MyItem {
 
     private String contents;
@@ -18,39 +16,116 @@ public class MyItem {
     public String Tel;
     public String Fax;
     public String Address;
+    public int Priority;
 
-    //result of my BC
-    public MyItem(int BcSeq, String UserId, String Name, String Company, String Position, String Duty, String Phone, String Email,
-                String Depart, String Team, String Tel, String Fax, String Address) {
-        this.BcSeq= BcSeq;
-        this.UserId = UserId;
-        this.Name = Name;
-        this.Company = Company;
-        this.Position = Position;
-        this.Duty = Duty;
-        this.Phone = Phone;
-        this.Email = Email;
-        this.Depart = Depart;
-        this.Team = Team;
-        this.Tel = Tel;
-        this.Fax = Fax;
-        this.Address = Address;
+    public void setPriority(int pri){ Priority=pri;}
+    public void setUserId(String userid)
+    {
+        UserId=userid;
     }
 
-    public String getName() {
-        return Name;
+    public void setBcSeq(int seq){
+        BcSeq=seq;
     }
 
-    public void setName(String name) {
-        this.Name = name;
+    public void setName(String name){
+        Name=name;
     }
 
-    public String getContents() {
-        return contents;
+    public void setAddress(String address){
+        Address=address;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
+    public void setFax(String fax){
+        Fax=fax;
     }
 
+    public void setCompany(String com){
+
+        Company=com;
+    }
+
+    public void setPosition(String position){
+        Position=position;
+    }
+
+    public void setDuty(String duty){
+        Duty=duty;
+    }
+
+    public void setPhone(String phone){
+        Phone=phone;
+    }
+
+    public void setEmail(String mail){
+        Email=mail;
+    }
+
+    public void setDepart(String depart){
+        Depart=depart;
+    }
+
+    public void setTeam(String team){
+        Team=team;
+    }
+
+    public void setTel(String tel){
+        Tel=tel;
+    }
+
+    public String getUserId(){
+        return this.UserId;
+    }
+
+    public String getPhone(){
+        return this.Phone;
+    }
+
+    public String getName(){
+        return this.Name;
+    }
+
+    public String getCompany(){
+        return this.Company;
+    }
+
+    public String getPosition(){
+        return this.Position;
+    }
+
+    public int getBcSeq(){
+        return this.BcSeq;
+    }
+
+    public int getPriority(){
+        return this.Priority;
+    }
+
+    public String getDuty(){
+        return this.Duty;
+    }
+
+    public String getEmail(){
+        return this.Email;
+    }
+
+    public String getDepart(){
+        return this.Depart;
+    }
+
+    public String getTeam(){
+        return this.Team;
+    }
+
+    public String getTel(){
+        return this.Tel;
+    }
+
+    public String getFax(){
+        return this.Fax;
+    }
+
+    public String getAddress(){
+        return this.Address;
+    }
 }

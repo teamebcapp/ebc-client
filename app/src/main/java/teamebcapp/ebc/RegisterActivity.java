@@ -58,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
+                            Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다", Toast.LENGTH_LONG).show();
                             Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                             RegisterActivity.this.startActivity(registerIntent);
                         }

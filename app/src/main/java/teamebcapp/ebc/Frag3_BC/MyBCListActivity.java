@@ -3,6 +3,8 @@ package teamebcapp.ebc.Frag3_BC;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,9 +32,9 @@ public class MyBCListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_bclist);
 
         myAdapter=new MyAdapter();
-        mListView = (ListView)findViewById(R.id.listView);
-        mListView.setAdapter(myAdapter);
+        mListView = findViewById(R.id.listView);
 
+        Button cancelButton = findViewById(R.id.cancelbutton);
         /* 아이템 추가 및 어댑터 등록 */
 
 
@@ -47,16 +49,15 @@ public class MyBCListActivity extends AppCompatActivity {
                 try {
                     List<User> result=response.body();
 
-                    Iterator iterator = result.iterator();
-                    int count=0;
-                    while (iterator.hasNext()) {
-                        count++;
-                        String element = (String) iterator.next();
+                    int i=0,resultsize=result.size();
+                    while (resultsize>0) {
 
-                    }
-
-                    for(int i=0;i<count;i++){
-
+                        myAdapter.addItem(result.get(i).BcSeq,result.get(i).UserId,result.get(i).Name,result.get(i).Company,
+                                result.get(i).Position,result.get(i).Duty,result.get(i).Phone,result.get(i).Email,result.get(i).Depart,
+                                result.get(i).Team,result.get(i).Tel,result.get(i).Fax,result.get(i).Address,result.get(i).UserSeq);
+                        mListView.setAdapter(myAdapter);
+                        resultsize--;
+                        i++;
                     }
 
                 } catch (Exception e) {
@@ -69,10 +70,12 @@ public class MyBCListActivity extends AppCompatActivity {
                 call.cancel();
             }
         });
-
-        Toast.makeText(getApplicationContext(), "명함을 등록했습니다", Toast.LENGTH_SHORT).show();
-        Intent registerMyBCIntent = new Intent(MyBCListActivity.this, MainActivity.class);
-        MyBCListActivity.this.startActivity(registerMyBCIntent);
-
-    }
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cancelMyBCIntent = new Intent(MyBCListActivity.this, MainActivity.class);
+                MyBCListActivity.this.startActivity(cancelMyBCIntent);
+            }
+        });
+        }
 }
