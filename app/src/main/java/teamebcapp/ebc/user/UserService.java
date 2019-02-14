@@ -16,7 +16,7 @@ public interface UserService {
             @Body User user);
 
     //로그인
-    @GET("user")
+    @GET("/login")
     Call<User> GetUser(
             @Query("userid") String UserId,
             @Query("password") String Password);
