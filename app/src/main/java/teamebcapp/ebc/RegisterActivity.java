@@ -47,10 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String userduty = dutyText.getText().toString();
                 String usermail = mailText.getText().toString();
 
-                boolean equals = false;
 
                 if (userPassword1.equals(userPassword2)) { //비밀번호확인용
-                    equals=true;
 
                     UserService userServiceregi = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
                     User user = new User (userID, userPassword1,userName,userCom,userPos,userduty,userPhone,usermail,null,null,null,null,null);

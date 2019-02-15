@@ -20,11 +20,17 @@ public interface UserService {
     Call<User> GetUser(
             @Query("userid") String UserId,
             @Query("password") String Password);
+    //회원정보수정
+    @POST("user")
+    Call<User>PutUser(
+            @Body User user
+    );
 
     //post시 로그인정보 받아오기
     @GET("user")
     Call<User> GetUserInfo(
-            @Query("userid") String UserId);
+            @Query("userid") String UserId,
+            @Query("password") String Password);
 
     //내정보조회
     @GET("user")

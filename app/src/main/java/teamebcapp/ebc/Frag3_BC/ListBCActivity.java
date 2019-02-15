@@ -14,9 +14,6 @@ import retrofit2.Response;
 import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
-import teamebcapp.ebc.user.CreateUser;
-import teamebcapp.ebc.user.User;
-import teamebcapp.ebc.user.UserService;
 
 public class ListBCActivity extends AppCompatActivity {
 

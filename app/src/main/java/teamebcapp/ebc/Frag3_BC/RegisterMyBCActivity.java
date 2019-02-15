@@ -45,7 +45,7 @@ public class RegisterMyBCActivity extends AppCompatActivity {
 
         //taking your info that you registered the ID
         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userService.GetUserInfo(InfoUser.transuserID);
+        Call<User> call = userService.GetUserInfo(InfoUser.transuserID,InfoUser.transuserPass);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

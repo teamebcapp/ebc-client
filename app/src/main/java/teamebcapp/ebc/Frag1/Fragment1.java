@@ -68,7 +68,7 @@ public class Fragment1 extends Fragment {
 
 
                     QRCodeWriter qrCodeWriter = new QRCodeWriter();
-                    Bitmap bitmap = toBitmap(qrCodeWriter.encode(String.valueOf(bcs.get(0).BcSeq), BarcodeFormat.QR_CODE, 250, 250));
+                    Bitmap bitmap = toBitmap(qrCodeWriter.encode("EBCAppBcSeq"+String.valueOf(bcs.get(0).BcSeq), BarcodeFormat.QR_CODE, 250, 250));
                     img_qrcode_result.setImageBitmap(bitmap);
 
                     bcsViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -81,7 +81,7 @@ public class Fragment1 extends Fragment {
                         public void onPageSelected(int i) {
                             QRCodeWriter qrCodeWriter = new QRCodeWriter();
                             try {
-                                Bitmap bitmap = toBitmap(qrCodeWriter.encode(String.valueOf(bcs.get(i).BcSeq), BarcodeFormat.QR_CODE, 250, 250));
+                                Bitmap bitmap = toBitmap(qrCodeWriter.encode("EBCAppBcSeq"+String.valueOf(bcs.get(i).BcSeq), BarcodeFormat.QR_CODE, 250, 250));
                                 img_qrcode_result.setImageBitmap(bitmap);
                             } catch (WriterException e) {
                                 e.printStackTrace();
@@ -103,31 +103,6 @@ public class Fragment1 extends Fragment {
                 call.cancel();
             }
         });
-
-
-
-        /*btn_start_qrcode_generate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = edt_qrcode_content.getText().toString();
-                if (content.isEmpty()) {
-                    Toast.makeText(getActivity(), "문자를 입력해주세요", Toast.LENGTH_LONG).show();
-                } else {
-                    //QRcodegenerator
-                    QRCodeWriter qrCodeWriter = new QRCodeWriter();
-                    try {
-                        Bitmap bitmap = toBitmap(qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, 200, 200));
-                        img_qrcode_result.setImageBitmap(bitmap);
-                    } catch (WriterException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        });*/
-
-
         return view;
     }
 

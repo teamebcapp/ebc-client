@@ -29,6 +29,7 @@ public class Fragment3 extends Fragment {
 
         Button registerBC = view.findViewById(R.id.registerMyBC);
         Button MyBCList =view.findViewById(R.id.MyBCList);
+        Button reviseButton =view.findViewById(R.id.reviseButton);
 
         registerBC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,15 @@ public class Fragment3 extends Fragment {
             public void onClick(View v){
                 Intent MyBCListIntent= new Intent(getActivity(),MyBCListActivity.class);
                 getActivity().startActivity(MyBCListIntent);
+            }
+        });
+
+
+        reviseButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent reviseIntent= new Intent(getActivity(),PutActivity.class);
+                getActivity().startActivity(reviseIntent);
             }
         });
         return view;
