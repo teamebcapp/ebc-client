@@ -11,9 +11,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import teamebcapp.ebc.common.utils.SharedPrefrerManager;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
@@ -57,7 +60,13 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.isSuccessful() == true) {
                                 if (response.body().UserSeq != 0) {
                                     InfoUser.transuserID=userID;
-                                    InfoUser.transuserPass=userPassword;
+//                                    InfoUser.transuserPass=userPassword;
+
+                                    String access_token = response.headers().get("access_token");
+                                    SharedPrefrerManager.setAccessToken(context , access_token);
+
+                                    InfoUser.access_token = access_token;
+
                                     Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
                                     Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                     LoginActivity.this.startActivity(loginIntent);
@@ -82,5 +91,34 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+
+        String access_token = SharedPrefrerManager.getAccessToken(context);
+        Toast.makeText(getApplicationContext(), "토큰 :" + access_token, Toast.LENGTH_SHORT).show();
+        if(access_token != null && !access_token.equals("")) {
+            UserService userServicelogin = teamebcapp.ebc.Retrofit.retrofit.create
+                    (UserService.class);
+            Call<Map<String,Object>> call = userServicelogin.GetValidToken(access_token);
+            call.enqueue(new Callback<Map<String,Object>>() {
+                @Override
+                public void onResponse(Call<Map<String,Object>> call, Response<Map<String,Object>> response) {
+                    try {
+                        if (response.isSuccessful() == true) {
+                            if( response.body().get("ResultCode").equals("200") ) {
+                                Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
+                                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                LoginActivity.this.startActivity(loginIntent);
+                            }
+                        }
+                    } catch (Exception e) {
+                    }
+
+                }
+                @Override
+                public void onFailure(Call<Map<String,Object>> call, Throwable t) {
+                    // handle failure
+                    call.cancel();
+                }
+            });
+        }
     }
 }

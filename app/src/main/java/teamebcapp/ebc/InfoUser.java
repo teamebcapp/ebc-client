@@ -9,5 +9,6 @@ import teamebcapp.ebc.user.UserService;
 public class InfoUser {
     public static String transuserID;
     public static String transuserPass;
+    public static String access_token;
 
 }

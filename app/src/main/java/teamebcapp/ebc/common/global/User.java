@@ -16,6 +16,7 @@ public class User {
     static public String Tel;
     static public String Fax;
     static public String Address;
+    static public String access_token;
 
     public static void setUser(teamebcapp.ebc.user.User user) {
         UserSeq = user.UserSeq;
