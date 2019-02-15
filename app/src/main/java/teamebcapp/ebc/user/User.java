@@ -57,21 +57,7 @@ public class User {
     }
 
     //for creating user
-    public User(String UserId, String Name, String Company, String Position, String Duty, String Phone, String Email,
-                String Depart, String Team, String Tel, String Fax, String Address) {
-        this.UserId = UserId;
-        this.Name = Name;
-        this.Company = Company;
-        this.Position = Position;
-        this.Duty = Duty;
-        this.Phone = Phone;
-        this.Email = Email;
-        this.Depart = Depart;
-        this.Team = Team;
-        this.Tel = Tel;
-        this.Fax = Fax;
-        this.Address = Address;
-    }
+
 
     //retrieve BC
     public User(int BcSeq) {

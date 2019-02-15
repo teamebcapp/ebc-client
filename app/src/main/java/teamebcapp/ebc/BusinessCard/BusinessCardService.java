@@ -17,17 +17,25 @@ public interface BusinessCardService {
 
     //명함등록
     @POST("bc")
-    Call<BusinessCard> PostBC(
+    Call<BusinessCard> PostUserBC(
             @Body BusinessCard user);
 
     //사용자 명함리스트조회
     //id입력시 가지고있는 명함 조회가능
     @GET("bcs")
     Call<List<BusinessCard>> GetUserBCs(
-            @Query("userid") String userid);
+            @Query("userId") String userId);
 
     //명함조회
     @GET("bc")
     Call<BusinessCard>ListUserBC(
             @Query("bcSeq") int bcSeq);
+
+    //BCs which a user have
+    @GET("owner/bcs")
+    Call<List<BusinessCard>>GetBCs(@Query("ownerUserid") String ownerUserid);
+
+    //other's new BC
+    @POST("owner/bcs")
+    Call<BusinessCard>PostBC(@Body BusinessCard user);
 }

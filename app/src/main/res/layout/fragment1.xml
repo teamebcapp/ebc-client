@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,40 +7,17 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="5">
-        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/iv_generated_qrcode"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:gravity="bottom"
-            android:layout_gravity="bottom">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/businessCardsPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 
-</LinearLayout>
+</FrameLayout>

@@ -39,6 +39,7 @@ public class Fragment3 extends Fragment {
             }
 
         });
+/*
 
         MyBCList.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -47,6 +48,7 @@ public class Fragment3 extends Fragment {
                 getActivity().startActivity(MyBCListIntent);
             }
         });
+*/
 
 
         reviseButton.setOnClickListener(new View.OnClickListener(){

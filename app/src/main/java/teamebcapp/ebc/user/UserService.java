@@ -32,34 +32,4 @@ public interface UserService {
             @Query("userid") String UserId,
             @Query("password") String Password);
 
-    //내정보조회
-    @GET("user")
-    Call<User> GetMyUser(
-            @Query("Name") String Name,
-            @Query("Company") String Company,
-            @Query("Position") String Position,
-            @Query("Duty") String Duty,
-            @Query("Phone") String Phone,
-            @Query("Email") String Email);
-
-    //명함수정
-    @PUT("bc")
-    Call<User> PutBC(
-            @Query("bcSeq")int bcSeq);
-
-    //명함등록
-    @POST("bc")
-    Call<User> PostBC(
-            @Body User user);
-
-    //사용자 명함리스트조회
-    //id입력시 가지고있는 명함 조회가능
-    @GET("bcs")
-    Call<List<User>> GetUserBCs(
-            @Query("userid") String userid);
-
-    //명함조회
-    @GET("bc")
-    Call<User>ListUserBC(
-            @Query("bcSeq") int bcSeq);
 }

@@ -1,3 +1,4 @@
+/*
 package teamebcapp.ebc.Frag2;
 
 import android.content.Intent;
@@ -21,6 +22,8 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import teamebcapp.ebc.BusinessCard.BusinessCard;
+import teamebcapp.ebc.BusinessCard.BusinessCardService;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
 import teamebcapp.ebc.user.User;
@@ -32,17 +35,6 @@ public class registerBCactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_bcactivity);
-
-
-        final Button btn_start_qrcode_reader = (Button) findViewById(R.id.btn_start_qrcode_reader);
-
-        btn_start_qrcode_reader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startQRCode();
-            }
-        });
-
 
         final EditText idText= findViewById(R.id.idText);
         final EditText nameText = findViewById(R.id.nameText);
@@ -59,6 +51,10 @@ public class registerBCactivity extends AppCompatActivity {
 
         final Button registerButton = findViewById(R.id.registerButton);
         final Button cancelButton = findViewById(R.id.cancelButton);
+
+
+        final Button btn_start_qrcode_reader = (Button) findViewById(R.id.btn_start_qrcode_reader);
+
 
         //다른사람 명함 등록하기
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -79,10 +75,10 @@ public class registerBCactivity extends AppCompatActivity {
 
                 UserService userServiceMyBC = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
                 User UserCall = new User(userID, userName, userCom, userPos, userDuty, userPhone, userMail, userDepart, userTeam, userTel, userFax, userAdd);
-                Call<User> call = userServiceMyBC.PostBC(UserCall);
-                call.enqueue(new Callback<User>() {
+                Call<BusinessCard> call = userServiceMyBC.PostBC(UserCall);
+                call.enqueue(new Callback<BusinessCard>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
                         try {
                             Toast.makeText(getApplicationContext(), "명함을 등록했습니다", Toast.LENGTH_SHORT).show();
                             Intent registerMyBCIntent = new Intent(registerBCactivity.this, MainActivity.class);
@@ -113,21 +109,4 @@ public class registerBCactivity extends AppCompatActivity {
         });
     }
 
-    public void startQRCode() {
-        new IntentIntegrator(this).initiateScan();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == IntentIntegrator.REQUEST_CODE) {
-            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-            if (result == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-}
+}*/

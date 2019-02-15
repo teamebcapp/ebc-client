@@ -12,6 +12,8 @@ import android.widget.Toast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import teamebcapp.ebc.BusinessCard.BusinessCard;
+import teamebcapp.ebc.BusinessCard.BusinessCardService;
 import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
@@ -88,12 +90,12 @@ public class RegisterMyBCActivity extends AppCompatActivity {
                 final String userFax = faxText.getText().toString();
                 final String userAdd = addText.getText().toString();
 
-                UserService userServiceMyBC = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-                User UserCall = new User(userID, userName, userCom, userPos, userDuty, userPhone, userMail, userDepart, userTeam, userTel, userFax, userAdd);
-                Call<User> call = userServiceMyBC.PostBC(UserCall);
-                call.enqueue(new Callback<User>() {
+                BusinessCardService userServiceMyBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
+                BusinessCard UserCall = new BusinessCard(userID, userName, userCom, userPos, userDuty, userPhone, userMail, userDepart, userTeam, userTel, userFax, userAdd);
+                Call<BusinessCard> call = userServiceMyBC.PostBC(UserCall);
+                call.enqueue(new Callback<BusinessCard>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
                         try {
                             Toast.makeText(getApplicationContext(), "명함을 등록했습니다", Toast.LENGTH_SHORT).show();
                             Intent cancelMyBCIntent = new Intent(RegisterMyBCActivity.this, MainActivity.class);
@@ -103,7 +105,7 @@ public class RegisterMyBCActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                    public void onFailure(Call<BusinessCard> call, Throwable t) {
                         // handle failure
                         call.cancel();
                     }

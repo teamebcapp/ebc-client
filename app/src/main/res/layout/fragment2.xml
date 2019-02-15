@@ -3,25 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="teamebcapp.ebc.Frag1.Fragment1">
+    tools:context="teamebcapp.ebc.Frag2.Fragment2">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/registerButton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="명함등록" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/listButton"
-            android:layout_width="match_parent"
+            <Button
+                android:id="@+id/blueButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="블루투스"
+                android:layout_margin="5dp"/>
+
+            <Button
+                android:id="@+id/btn_qrcode_reader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="명함등록" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="명함목록조회" />
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_generated_qrcode"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:gravity="bottom">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/businessCardsPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>
