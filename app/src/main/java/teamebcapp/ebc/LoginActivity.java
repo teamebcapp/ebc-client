@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        String access_token = SharedPrefrerManager.getAccessToken(context);
+        final String access_token = SharedPrefrerManager.getAccessToken(context);
         Toast.makeText(getApplicationContext(), "토큰 :" + access_token, Toast.LENGTH_SHORT).show();
         if(access_token != null && !access_token.equals("")) {
             UserService userServicelogin = teamebcapp.ebc.Retrofit.retrofit.create
@@ -104,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         if (response.isSuccessful() == true) {
                             if( response.body().get("ResultCode").equals("200") ) {
+                                InfoUser.transuserID = response.headers().get("user_id");
+                                InfoUser.access_token = access_token;
                                 Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
                                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(loginIntent);
