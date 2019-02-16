@@ -50,7 +50,7 @@ public class RegisterMyBCActivity extends AppCompatActivity {
 
         //taking your info that you registered the ID
         UserService userServiceGet = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userServiceGet.GetUserInfo("test3",InfoUser.access_token);
+        Call<User> call = userServiceGet.GetUserInfo(InfoUser.transuserID,InfoUser.access_token);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -100,7 +100,7 @@ public class RegisterMyBCActivity extends AppCompatActivity {
                 BusinessCardService userServiceMyBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
                 BusinessCard UserCall = new BusinessCard(userID, userName, userCom, userPos, userDuty, userPhone,
                         userMail, userDepart, userTeam, userTel, userFax, userAdd);
-                Call<BusinessCard> call = userServiceMyBC.PostBC(UserCall,InfoUser.access_token);
+                Call<BusinessCard> call = userServiceMyBC.PostUserBC(UserCall,InfoUser.access_token);
                 call.enqueue(new Callback<BusinessCard>() {
                     @Override
                     public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {

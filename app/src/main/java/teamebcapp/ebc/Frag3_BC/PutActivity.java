@@ -115,7 +115,7 @@ public class PutActivity extends AppCompatActivity {
 
                                             InfoUser.access_token = access_token;
 
-                                            Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다. 다시 로그인하세요", Toast.LENGTH_LONG).show();
                                             Intent loginIntent = new Intent(PutActivity.this, LoginActivity.class);
                                             PutActivity.this.startActivity(loginIntent);
                                         } else {

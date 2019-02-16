@@ -10,5 +10,6 @@ public class InfoUser {
     public static String transuserID;
     public static String transuserPass;
     public static String access_token;
+    public static int MyBcSeq;
 
 }

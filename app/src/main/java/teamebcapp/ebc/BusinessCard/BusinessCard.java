@@ -14,12 +14,13 @@ public class BusinessCard {
     public String Tel;
     public String Fax;
     public String Address;
-    public String ownerUserId;
-    public int ownerBcSeq;
+    public String OwnerUserId;
+    public int OwnerBcSeq;
 
-    public BusinessCard(String owneruserid,int ownerbcseq){
-        this.ownerUserId=owneruserid;
-        this.ownerBcSeq=ownerbcseq;
+    public BusinessCard(String owneruserid,int ownerbcseq, int bcseq){
+        this.OwnerUserId=owneruserid;
+        this.OwnerBcSeq=ownerbcseq;
+        this.BcSeq=bcseq;
     }
 
     public BusinessCard(String UserId, String Name, String Company, String Position, String Duty, String Phone, String Email,

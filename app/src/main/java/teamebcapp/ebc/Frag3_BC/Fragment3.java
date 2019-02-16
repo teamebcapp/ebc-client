@@ -28,7 +28,6 @@ public class Fragment3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment3, null);
 
         Button registerBC = view.findViewById(R.id.registerMyBC);
-        Button MyBCList =view.findViewById(R.id.MyBCList);
         Button reviseButton =view.findViewById(R.id.reviseButton);
 
         registerBC.setOnClickListener(new View.OnClickListener() {
@@ -39,17 +38,6 @@ public class Fragment3 extends Fragment {
             }
 
         });
-/*
-
-        MyBCList.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent MyBCListIntent= new Intent(getActivity(),MyBCListActivity.class);
-                getActivity().startActivity(MyBCListIntent);
-            }
-        });
-*/
-
 
         reviseButton.setOnClickListener(new View.OnClickListener(){
             @Override

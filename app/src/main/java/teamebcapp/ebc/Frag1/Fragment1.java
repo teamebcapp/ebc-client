@@ -54,8 +54,7 @@ public class Fragment1 extends Fragment {
 
     private void getListBCs(){
         BusinessCardService businessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-        String userId = InfoUser.transuserID;
-        Call<List<BusinessCard>> call = businessCardService.GetBCs(userId,InfoUser.access_token);
+        Call<List<BusinessCard>> call = businessCardService.GetBCs(InfoUser.transuserID,InfoUser.access_token);
 
         call.enqueue(new Callback<List<BusinessCard>>() {
             @Override
@@ -64,13 +63,13 @@ public class Fragment1 extends Fragment {
                 try {
                     List<BusinessCard> result = response.body();
 
-                    int i = 0, resultsize = result.size();
-                    while (resultsize > 0) {
+                    int i = 0, resultSize = result.size();
+                    while (resultSize > 0) {
                         myAdapter.addItem(result.get(i).BcSeq, result.get(i).UserId, result.get(i).Name, result.get(i).Company,
                                 result.get(i).Position, result.get(i).Duty, result.get(i).Phone, result.get(i).Email, result.get(i).Depart,
                                 result.get(i).Team, result.get(i).Tel, result.get(i).Fax, result.get(i).Address);
                         mListView.setAdapter(myAdapter);
-                        resultsize--;
+                        resultSize--;
                         i++;
                     } } catch (Exception e) { } }
             @Override

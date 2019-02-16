@@ -32,14 +32,14 @@ import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.MyBCFrag.BCPageAdapter;
 import teamebcapp.ebc.R;
-
+import teamebcapp.ebc.Frag2.QRActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Fragment2 extends Fragment {
-    String resultBcSeqStr;
-    int resultBcSeq;
-
+  /*  String resultBcSeqStr;
+    int resultBcSeq, MyBcSeq;
+*/
     private static List<BusinessCard> bcs = null;
 
 
@@ -67,26 +67,10 @@ public class Fragment2 extends Fragment {
         btn_start_qrcode_reader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startQRCode();
+                /*startQRCode();*/
 
-                BusinessCardService userServiceGetBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-                BusinessCard businesscard = new BusinessCard(InfoUser.transuserID, resultBcSeq);
-                Call<BusinessCard> call = userServiceGetBC.PostBC(businesscard,InfoUser.access_token);
-                call.enqueue(new Callback<BusinessCard>() {
-                    @Override
-                    public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
-                        try {
-
-                        } catch (Exception e) {
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<BusinessCard> call, Throwable t) {
-                        // handle failure
-                        call.cancel();
-                    }
-                });
+                Intent QRIntent = new Intent(getActivity(), QRActivity.class);
+                getActivity().startActivity(QRIntent);
             }
         });
 
@@ -108,7 +92,7 @@ public class Fragment2 extends Fragment {
                     QRCodeWriter qrCodeWriter = new QRCodeWriter();
                     Bitmap bitmap = toBitmap(qrCodeWriter.encode("EBCAppBcSeq" + String.valueOf(bcs.get(0).BcSeq), BarcodeFormat.QR_CODE, 250, 250));
                     img_qrcode_result.setImageBitmap(bitmap);
-
+                    InfoUser.MyBcSeq=bcs.get(0).BcSeq;
                     bcsViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                         @Override
                         public void onPageScrolled(int i, float v, int i1) {
@@ -120,6 +104,7 @@ public class Fragment2 extends Fragment {
                             QRCodeWriter qrCodeWriter = new QRCodeWriter();
                             try {
                                 Bitmap bitmap = toBitmap(qrCodeWriter.encode("EBCAppBcSeq" + String.valueOf(bcs.get(i).BcSeq), BarcodeFormat.QR_CODE, 250, 250));
+                                InfoUser.MyBcSeq=bcs.get(i).BcSeq;
                                 img_qrcode_result.setImageBitmap(bitmap);
                             } catch (WriterException e) {
                                 e.printStackTrace();
@@ -141,14 +126,10 @@ public class Fragment2 extends Fragment {
             }
         });
 
-
-
-
         return view;
-    }
+    }/*
 
-    public void startQRCode() {
-        new IntentIntegrator(getActivity()).initiateScan();
+    public void startQRCode() {new IntentIntegrator(MainActivity.this).initiateScan();
     }
 
     @Override
@@ -162,12 +143,30 @@ public class Fragment2 extends Fragment {
                 resultBcSeqStr.replace("EBCAppBcSeq", "");
                 resultBcSeq = Integer.parseInt(resultBcSeqStr);
 
+                BusinessCardService userServiceGetBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
+                BusinessCard businesscard = new BusinessCard(InfoUser.transuserID, resultBcSeq,MyBcSeq);
+                Call<BusinessCard> call = userServiceGetBC.PostBC(businesscard,InfoUser.access_token);
+                call.enqueue(new Callback<BusinessCard>() {
+                    @Override
+                    public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
+                        try {
+
+                        } catch (Exception e) {
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BusinessCard> call, Throwable t) {
+                        // handle failure
+                        call.cancel();
+                    }
+                });
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
+*/
     public static Bitmap toBitmap(BitMatrix matrix) {
         int height = matrix.getHeight();
         int width = matrix.getWidth();

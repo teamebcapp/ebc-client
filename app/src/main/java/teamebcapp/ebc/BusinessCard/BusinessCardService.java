@@ -42,7 +42,7 @@ public interface BusinessCardService {
                                    @Header("access_token")String access_token);
 
     //other's new BC
-    @POST("owner/bcs")
+    @POST("owner/bc")
     Call<BusinessCard>PostBC(@Body BusinessCard user,
                              @Header("access_token")String access_token);
 }
