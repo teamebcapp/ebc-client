@@ -71,7 +71,7 @@ public class Fragment2 extends Fragment {
 
                 BusinessCardService userServiceGetBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
                 BusinessCard businesscard = new BusinessCard(InfoUser.transuserID, resultBcSeq);
-                Call<BusinessCard> call = userServiceGetBC.PostBC(businesscard);
+                Call<BusinessCard> call = userServiceGetBC.PostBC(businesscard,InfoUser.access_token);
                 call.enqueue(new Callback<BusinessCard>() {
                     @Override
                     public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
@@ -93,7 +93,7 @@ public class Fragment2 extends Fragment {
         //show my BCs to QRcode and String
         BusinessCardService bcService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
         String user = InfoUser.transuserID;
-        Call<List<BusinessCard>> call = bcService.GetUserBCs(user);
+        Call<List<BusinessCard>> call = bcService.GetUserBCs(user,InfoUser.access_token);
         call.enqueue(new Callback<List<BusinessCard>>() {
             @Override
             public void onResponse(Call<List<BusinessCard>> call, Response<List<BusinessCard>> response) {
@@ -187,7 +187,7 @@ public class Fragment2 extends Fragment {
     private void LoadingBusinessCards() {
         BusinessCardService bcService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
         String user = InfoUser.transuserID;
-        Call<List<BusinessCard>> call = bcService.GetUserBCs(user);
+        Call<List<BusinessCard>> call = bcService.GetUserBCs(user,InfoUser.access_token);
         call.enqueue(new Callback<List<BusinessCard>>() {
             @Override
             public void onResponse(Call<List<BusinessCard>> call, Response<List<BusinessCard>> response) {

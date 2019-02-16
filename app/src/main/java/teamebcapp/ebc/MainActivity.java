@@ -1,18 +1,23 @@
 package teamebcapp.ebc;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import teamebcapp.ebc.Frag1.Fragment1;
 import teamebcapp.ebc.Frag2.Fragment2;
 import teamebcapp.ebc.Frag3_BC.Fragment3;
+import teamebcapp.ebc.common.utils.SharedPreferManager;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    public Context context;
 /*    static   {
         System . loadLibrary ( "native-lib" ) ;
     }*/
@@ -29,10 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // 위젯에 대한 참조
+        Button logoutButton=findViewById(R.id.logoutButton);
         btn_tab1 = (Button)findViewById(R.id.btn_tab1);
         btn_tab2 = (Button)findViewById(R.id.btn_tab2);
         btn_tab3 = (Button)findViewById(R.id.btn_tab3);
         // 탭 버튼에 대한 리스너 연결
+        logoutButton.setOnClickListener(this);
         btn_tab1.setOnClickListener(this);
         btn_tab2.setOnClickListener(this);
         btn_tab3.setOnClickListener(this);
@@ -60,8 +67,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // '버튼3' 클릭 시 '프래그먼트3' 호출
                 callFragment(FRAGMENT3);
                 break;
+
+            case R.id.logoutButton:
+
+                SharedPreferManager.removeAllPreferences(LoginActivity.context);
+
+                Toast.makeText(getApplicationContext(), "로그아웃되었습니다", Toast.LENGTH_SHORT).show();
+                Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
+                MainActivity.this.startActivity(logoutIntent);
+
+                break;
         }
     }
+
+
 
     private void callFragment(int frament_no){
 

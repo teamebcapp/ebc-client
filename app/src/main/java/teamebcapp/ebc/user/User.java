@@ -16,17 +16,6 @@ public class User {
     public String Tel;
     public String Fax;
     public String Address;
-
-    /*public String ResultMessage;
-    public String ResultCode;
-    public String ResultCount;
-
-    public User(String ResultMessage, String ResultCode, String ResultCount) {
-        this.ResultMessage = ResultMessage;
-        this.ResultCode = ResultCode;
-        this.ResultCount = ResultCount;
-    }*/
-
     //for login
     public User(String UserId, String Password, String Name, String Company, String Position, String Duty, String Phone, String Email,
                 String Depart, String Team, String Tel, String Fax, String Address) {
@@ -45,6 +34,7 @@ public class User {
         this.Address = Address;
 
     }
+
     public User(String UserId, String Password, String Name, String Company, String Position, String Duty, String Phone, String Email) {
         this.UserId = UserId;
         this.Password = Password;

@@ -14,8 +14,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import teamebcapp.ebc.InfoUser;
+import teamebcapp.ebc.LoginActivity;
 import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
+import teamebcapp.ebc.common.utils.SharedPreferManager;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
@@ -44,7 +46,7 @@ public class PutActivity extends AppCompatActivity {
 
         ///회원가입시 정보가져오기
         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userService.GetUserInfo(InfoUser.transuserID, InfoUser.transuserPass);
+        Call<User> call = userService.GetUserInfo(InfoUser.transuserID,InfoUser.access_token);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -100,17 +102,21 @@ public class PutActivity extends AppCompatActivity {
                         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create
                                 (UserService.class);
                         User user = new User(userID, userPassword1, userName, userCom, userPosi, userDuty, userPhone, userEmail);
-                        Call<User> call = userService.PutUser(user);
+                        Call<User> call = userService.PutUser(user,InfoUser.access_token);
                         call.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
                                 try {
                                     if (response.isSuccessful() == true) {
                                         if (response.body().UserSeq != 0) {
-                                            InfoUser.transuserID = userID;
-                                            InfoUser.transuserPass = userPassword1;
+
+                                            String access_token = response.headers().get("access_token");
+                                            SharedPreferManager.setAccessToken(context , access_token);
+
+                                            InfoUser.access_token = access_token;
+
                                             Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다", Toast.LENGTH_SHORT).show();
-                                            Intent loginIntent = new Intent(PutActivity.this, MainActivity.class);
+                                            Intent loginIntent = new Intent(PutActivity.this, LoginActivity.class);
                                             PutActivity.this.startActivity(loginIntent);
                                         } else {
                                             Toast.makeText(getApplicationContext(), "계정에 문제가 있습니다", Toast.LENGTH_SHORT).show();

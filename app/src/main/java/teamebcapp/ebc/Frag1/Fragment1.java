@@ -55,7 +55,7 @@ public class Fragment1 extends Fragment {
     private void getListBCs(){
         BusinessCardService businessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
         String userId = InfoUser.transuserID;
-        Call<List<BusinessCard>> call = businessCardService.GetBCs(userId);
+        Call<List<BusinessCard>> call = businessCardService.GetBCs(userId,InfoUser.access_token);
 
         call.enqueue(new Callback<List<BusinessCard>>() {
             @Override

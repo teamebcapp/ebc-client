@@ -1,6 +1,7 @@
 package teamebcapp.ebc.Frag3_BC;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,25 +49,29 @@ public class RegisterMyBCActivity extends AppCompatActivity {
         final Button cancelButton = findViewById(R.id.cancelButton);
 
         //taking your info that you registered the ID
-        UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userService.GetUserInfo(InfoUser.transuserID,InfoUser.transuserPass);
+        UserService userServiceGet = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
+        Call<User> call = userServiceGet.GetUserInfo("test3",InfoUser.access_token);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                String userName1 = response.body().Name;
-                nameText.setText(userName1);
-                String userCom1 = response.body().Company;
-                comText.setText(userCom1);
-                String userPos1 = response.body().Position;
-                posiText.setText(userPos1);
-                String userPhone1 = response.body().Phone;
-                phoneText.setText(userPhone1);
-                String userduty1 = response.body().Duty;
-                dutyText.setText(userduty1);
-                String usermail1 = response.body().Email;
-                mailText.setText(usermail1);}
-
-
+                try {
+                    if (response.isSuccessful() == true) {
+                        String userName1 = (String) response.body().Name;
+                        nameText.setText(userName1);
+                        String userCom1 = (String) response.body().Company;
+                        comText.setText(userCom1);
+                        String userPos1 = (String) response.body().Position;
+                        posiText.setText(userPos1);
+                        String userPhone1 = (String) response.body().Phone;
+                        phoneText.setText(userPhone1);
+                        String userduty1 = response.body().Duty;
+                        dutyText.setText(userduty1);
+                        String usermail1 = response.body().Email;
+                        mailText.setText(usermail1);
+                    }
+                } catch (Exception e) {
+                }
+            }
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 // handle failure
@@ -91,8 +98,9 @@ public class RegisterMyBCActivity extends AppCompatActivity {
                 final String userAdd = addText.getText().toString();
 
                 BusinessCardService userServiceMyBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-                BusinessCard UserCall = new BusinessCard(userID, userName, userCom, userPos, userDuty, userPhone, userMail, userDepart, userTeam, userTel, userFax, userAdd);
-                Call<BusinessCard> call = userServiceMyBC.PostBC(UserCall);
+                BusinessCard UserCall = new BusinessCard(userID, userName, userCom, userPos, userDuty, userPhone,
+                        userMail, userDepart, userTeam, userTel, userFax, userAdd);
+                Call<BusinessCard> call = userServiceMyBC.PostBC(UserCall,InfoUser.access_token);
                 call.enqueue(new Callback<BusinessCard>() {
                     @Override
                     public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
