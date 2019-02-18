@@ -31,26 +31,32 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/linearLayout">
 
-                <Button
-                    android:id="@+id/btn_tab1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="명함리스트" />
+        <ImageButton
+            android:id="@+id/btn_tab1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/states" />
 
-                <Button
-                    android:id="@+id/btn_tab2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="명함교환" />
+        <ImageButton
+            android:id="@+id/btn_tab2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/states_exchange" />
 
-                <Button
-                    android:id="@+id/btn_tab3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="관리" />
+        <ImageButton
+            android:id="@+id/btn_tab3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/states_control" />
 
         </LinearLayout>
 

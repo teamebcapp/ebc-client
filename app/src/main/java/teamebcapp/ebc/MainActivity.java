@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import teamebcapp.ebc.Frag1.Fragment1;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int FRAGMENT2 = 2;
     private final int FRAGMENT3 = 3;
 
-    private Button btn_tab1, btn_tab2, btn_tab3;
+    private ImageButton btn_tab1, btn_tab2, btn_tab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // 위젯에 대한 참조
         Button logoutButton=findViewById(R.id.logoutButton);
-        btn_tab1 = (Button)findViewById(R.id.btn_tab1);
-        btn_tab2 = (Button)findViewById(R.id.btn_tab2);
-        btn_tab3 = (Button)findViewById(R.id.btn_tab3);
+        btn_tab1 =findViewById(R.id.btn_tab1);
+        btn_tab2 =findViewById(R.id.btn_tab2);
+        btn_tab3 =findViewById(R.id.btn_tab3);
         // 탭 버튼에 대한 리스너 연결
         logoutButton.setOnClickListener(this);
         btn_tab1.setOnClickListener(this);
@@ -54,17 +55,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_tab1 :
-                // '버튼1' 클릭 시 '프래그먼트1' 호출
+                v.setSelected(true);
+                findViewById(R.id.btn_tab2).setSelected(false);
+                findViewById(R.id.btn_tab3).setSelected(false);
                 callFragment(FRAGMENT1);
                 break;
 
             case R.id.btn_tab2 :
-                // '버튼2' 클릭 시 '프래그먼트2' 호출
+                v.setSelected(true);
+                findViewById(R.id.btn_tab1).setSelected(false);
+                findViewById(R.id.btn_tab3).setSelected(false);
                 callFragment(FRAGMENT2);
                 break;
 
             case R.id.btn_tab3 :
-                // '버튼3' 클릭 시 '프래그먼트3' 호출
+                v.setSelected(true);
+                findViewById(R.id.btn_tab1).setSelected(false);
+                findViewById(R.id.btn_tab2).setSelected(false);
                 callFragment(FRAGMENT3);
                 break;
 
