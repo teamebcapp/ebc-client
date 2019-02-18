@@ -37,7 +37,9 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button_border"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:src="@drawable/states" />
 
         <ImageButton
@@ -46,7 +48,9 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button_border"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:src="@drawable/states_exchange" />
 
         <ImageButton
@@ -55,7 +59,9 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button_border"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:src="@drawable/states_control" />
 
         </LinearLayout>
