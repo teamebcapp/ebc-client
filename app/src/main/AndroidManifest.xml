@@ -26,7 +26,8 @@
         <activity android:name=".Frag3_BC.ListBCActivity" />
         <activity android:name=".Frag1.MyBCListActivity" />
         <activity android:name=".Frag3_BC.PutActivity" />
-        <activity android:name=".Frag2.QRActivity"></activity>
+        <activity android:name=".Frag2.QRActivity" />
+        <activity android:name=".ocr.OcrActivity"></activity>
     </application>
 
 </manifest>
