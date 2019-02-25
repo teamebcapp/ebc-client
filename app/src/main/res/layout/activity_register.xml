@@ -14,6 +14,9 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#000000"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
             android:text="뒤로가기" />
 
         <EditText
@@ -92,9 +95,12 @@
 
         <Button
             android:id="@+id/registerButton"
-            android:layout_width="352dp"
+            android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:background="#000000"
             android:text="회원가입"
+            android:layout_margin="5dp"
+            android:textColor="#ffffff"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="263dp" />
     </LinearLayout>

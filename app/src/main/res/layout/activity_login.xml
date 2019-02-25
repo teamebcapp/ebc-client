@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <EditText
         android:id="@+id/idText"
         android:layout_width="wrap_content"
@@ -24,15 +23,17 @@
         android:hint="비밀번호"
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="93dp"
-        tools:ignore="MissingConstraints"/>
+        tools:layout_editor_absoluteY="93dp" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="200dp"
+        android:background="#000000"
         android:text="Login"
-        tools:ignore="MissingConstraints"
+        android:textColor="#ffffff"
         tools:layout_editor_absoluteX="44dp"
         tools:layout_editor_absoluteY="168dp" />
 
@@ -40,5 +41,9 @@
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="회원가입" />
+        android:layout_margin="5dp"
+        android:background="#000000"
+        android:text="회원가입"
+        android:textColor="#ffffff" />
+
 </LinearLayout>

@@ -3,6 +3,27 @@
     package="teamebcapp.ebc">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
 
     <application
         android:allowBackup="true"
@@ -21,13 +42,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Frag2.registerBCactivity" />
         <activity android:name=".Frag3_BC.RegisterMyBCActivity" />
         <activity android:name=".Frag3_BC.ListBCActivity" />
-        <activity android:name=".Frag1.MyBCListActivity" />
         <activity android:name=".Frag3_BC.PutActivity" />
         <activity android:name=".Frag2.QRActivity" />
-        <activity android:name=".ocr.OcrActivity"></activity>
+        <activity android:name=".ocr.OcrActivity" />
+        <activity
+            android:name=".ocr.ExamCVActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

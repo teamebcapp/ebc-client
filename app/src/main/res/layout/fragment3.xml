@@ -18,18 +18,27 @@
             android:id="@+id/registerMyBC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#000000"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
             android:text="내명함등록" />
 
         <Button
             android:id="@+id/MyBCList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#000000"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
             android:text="내명함관리" />
 
         <Button
             android:id="@+id/reviseButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#000000"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
             android:text="회원정보수정" />
 
     </LinearLayout>

@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import teamebcapp.ebc.common.utils.SharedPreferManager;
+import teamebcapp.ebc.ocr.ExamCVActivity;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
         final Button loginButton = (Button) findViewById(R.id.loginButton);
+
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

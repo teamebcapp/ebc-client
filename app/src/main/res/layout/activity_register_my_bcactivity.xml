@@ -119,6 +119,9 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:text="적용"
+                android:layout_margin="5dp"
+                android:background="#000000"
+                android:textColor="#ffffff"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="263dp" />
 
@@ -128,6 +131,9 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:text="취소"
+                android:layout_margin="5dp"
+                android:background="#000000"
+                android:textColor="#ffffff"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="263dp" />
         </LinearLayout>

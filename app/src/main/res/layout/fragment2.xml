@@ -25,6 +25,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
                     android:text="블루투스" />
 
                 <Button
@@ -32,6 +34,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
                     android:text="명함등록" />
             </LinearLayout>
 
