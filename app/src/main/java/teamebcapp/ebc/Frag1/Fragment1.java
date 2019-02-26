@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import teamebcapp.ebc.R;
  * A simple {@link Fragment} subclass.
  */
 public class Fragment1 extends Fragment {
-
+    private int frag1BcSeq;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +46,41 @@ public class Fragment1 extends Fragment {
         mListView = view.findViewById(R.id.listView);
 
         getListBCs();
+/*
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BusinessCardService getbusinessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
+                Call<BusinessCard> getcall = getbusinessCardService.GetonlyBC();
+                BusinessCardService deletebusinessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
+                Call<BusinessCard> deletecall = deletebusinessCardService.DeleteBC();
+
+                deletecall.enqueue(new Callback<BusinessCard>() {
+                    @Override
+                    public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
+
+                        try {
+                        } catch (Exception e) {
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BusinessCard> call, Throwable t) {
+                        call.cancel();
+                    }
+                });
+            }
+        });
+*/
 
         return view;
     }
 
 
-
-    private void getListBCs(){
+    private void getListBCs() {
         BusinessCardService businessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-        Call<List<BusinessCard>> call = businessCardService.GetBCs(InfoUser.transuserID,InfoUser.access_token);
+        Call<List<BusinessCard>> call = businessCardService.GetBCs(InfoUser.transuserID, InfoUser.access_token);
 
         call.enqueue(new Callback<List<BusinessCard>>() {
             @Override
@@ -71,9 +97,15 @@ public class Fragment1 extends Fragment {
                         mListView.setAdapter(myAdapter);
                         resultSize--;
                         i++;
-                    } } catch (Exception e) { } }
+                    }
+                } catch (Exception e) {
+                }
+            }
+
             @Override
-            public void onFailure(Call<List<BusinessCard>> call, Throwable t) { call.cancel(); }
+            public void onFailure(Call<List<BusinessCard>> call, Throwable t) {
+                call.cancel();
+            }
         });
     }
 }

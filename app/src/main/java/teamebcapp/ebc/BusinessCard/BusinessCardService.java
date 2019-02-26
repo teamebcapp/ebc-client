@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -45,4 +46,9 @@ public interface BusinessCardService {
     @POST("owner/bc")
     Call<BusinessCard>PostBC(@Body BusinessCard user,
                              @Header("access_token")String access_token);
+    @DELETE("owner/bc")
+    Call<BusinessCard>DeleteBC(@Body BusinessCard user,
+                               @Header("access_token")String access_token);
+    @GET("owner/bc")
+    Call<BusinessCard>GetonlyBC(@Body BusinessCard user, @Header("access_token")String access_token);
 }

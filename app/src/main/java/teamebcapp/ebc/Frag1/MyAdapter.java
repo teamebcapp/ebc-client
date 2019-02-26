@@ -56,26 +56,16 @@ public class MyAdapter extends BaseAdapter {
         TextView faxText = convertView.findViewById(R.id.itemfaxText);
         TextView addText = convertView.findViewById(R.id.itemaddText);*/
 
-        /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
         final MyItem myItem = mItems.get(position);
-
-        /* 각 위젯에 세팅된 아이템을 뿌려준다 */
 
         nameText.setText(myItem.getName());
         comText.setText(myItem.getCompany());
         posiText.setText(myItem.getPosition());
         phoneText.setText(myItem.getPhone());
         teamText.setText(myItem.getTeam());
-        //logoImage.setImageDrawable(myItem.getIcon());
 
-        /*dutyText.setText(myItem.getDuty());
-        mailText.setText(myItem.getEmail());
-        departText.setText(myItem.getDepart());
-        idText.setText(myItem.getUserId());
-        telText.setText(myItem.getTel());
-        faxText.setText(myItem.getFax());
-        addText.setText(myItem.getAddress());
-*/
+
+
           return convertView;
     }
 

@@ -17,7 +17,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import teamebcapp.ebc.common.utils.SharedPreferManager;
-import teamebcapp.ebc.ocr.ExamCVActivity;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 
