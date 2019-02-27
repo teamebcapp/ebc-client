@@ -18,7 +18,8 @@ public class MyItem {
     public String Fax;
     public String Address;
     public Drawable icon;
-
+    public int OwnerBcSeq;
+    public int OwnerSeq;
 
     public Drawable getIcon() {
         return icon;
@@ -27,7 +28,12 @@ public class MyItem {
     public void setUserId(String userid) {
         UserId = userid;
     }
-
+    public void setOwnerBcSeq(int ownerbcseq){
+        OwnerBcSeq=ownerbcseq;
+    }
+    public void setOwnerSeq(int ownerseq){
+        OwnerSeq=ownerseq;
+    }
     public void setBcSeq(int seq) {
         BcSeq = seq;
     }
@@ -129,6 +135,8 @@ public class MyItem {
         return this.Address;
     }
 
+    public int getOwnerBcSeq(){ return this.OwnerBcSeq;}
+    public int getOwnerSeq(){return this.OwnerSeq;}
     public void setIcon(Drawable icon) {
         this.icon = icon;
     }

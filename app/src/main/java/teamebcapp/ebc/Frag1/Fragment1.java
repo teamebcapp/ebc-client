@@ -2,6 +2,8 @@ package teamebcapp.ebc.Frag1;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +20,14 @@ import teamebcapp.ebc.BusinessCard.BusinessCardService;
 import teamebcapp.ebc.InfoUser;
 import teamebcapp.ebc.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Fragment1 extends Fragment {
-    private int frag1BcSeq;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    private ListView mListView;
+    private RecyclerView recyclerView;
     private MyAdapter myAdapter;
 
 
@@ -42,8 +41,11 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment1, null);
 
+        recyclerView = view.findViewById(R.id.recyclerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         myAdapter = new MyAdapter();
-        mListView = view.findViewById(R.id.listView);
 
         getListBCs();
 /*
@@ -91,10 +93,10 @@ public class Fragment1 extends Fragment {
 
                     int i = 0, resultSize = result.size();
                     while (resultSize > 0) {
-                        myAdapter.addItem(result.get(i).BcSeq, result.get(i).UserId, result.get(i).Name, result.get(i).Company,
+                        myAdapter.addItem(result.get(i).OwnerSeq,result.get(i).OwnerBcSeq,result.get(i).BcSeq, result.get(i).UserId, result.get(i).Name, result.get(i).Company,
                                 result.get(i).Position, result.get(i).Duty, result.get(i).Phone, result.get(i).Email, result.get(i).Depart,
                                 result.get(i).Team, result.get(i).Tel, result.get(i).Fax, result.get(i).Address);
-                        mListView.setAdapter(myAdapter);
+                        recyclerView.setAdapter(myAdapter);
                         resultSize--;
                         i++;
                     }

@@ -127,46 +127,9 @@ public class Fragment2 extends Fragment {
         });
 
         return view;
-    }/*
-
-    public void startQRCode() {new IntentIntegrator(MainActivity.this).initiateScan();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == IntentIntegrator.REQUEST_CODE) {
-            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-            if (result == null) {
-                Toast.makeText(getActivity(), "취소되었습니다", Toast.LENGTH_LONG).show();
-            } else {
-                resultBcSeqStr = result.getContents();
-                resultBcSeqStr.replace("EBCAppBcSeq", "");
-                resultBcSeq = Integer.parseInt(resultBcSeqStr);
 
-                BusinessCardService userServiceGetBC = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-                BusinessCard businesscard = new BusinessCard(InfoUser.transuserID, resultBcSeq,MyBcSeq);
-                Call<BusinessCard> call = userServiceGetBC.PostBC(businesscard,InfoUser.access_token);
-                call.enqueue(new Callback<BusinessCard>() {
-                    @Override
-                    public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
-                        try {
-
-                        } catch (Exception e) {
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<BusinessCard> call, Throwable t) {
-                        // handle failure
-                        call.cancel();
-                    }
-                });
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-*/
     public static Bitmap toBitmap(BitMatrix matrix) {
         int height = matrix.getHeight();
         int width = matrix.getWidth();

@@ -16,8 +16,10 @@ public class BusinessCard {
     public String Address;
     public String OwnerUserId;
     public int OwnerBcSeq;
+    public int OwnerSeq;
 
-    public BusinessCard(int onwerbcseq){this.OwnerBcSeq=onwerbcseq;}
+    public BusinessCard(int onwerseq){this.OwnerBcSeq=onwerseq;}
+
     public BusinessCard(String owneruserid,int ownerbcseq, int bcseq){
         this.OwnerUserId=owneruserid;
         this.OwnerBcSeq=ownerbcseq;
