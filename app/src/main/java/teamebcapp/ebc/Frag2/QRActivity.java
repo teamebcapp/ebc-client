@@ -23,13 +23,17 @@ public class QRActivity extends AppCompatActivity {
     String resultBcSeqStr;
     int resultBcSeq;
 
+
+    @Override
+    public void onBackPressed() {
+        Intent backIntent = new Intent(QRActivity.this, MainActivity.class);
+        QRActivity.this.startActivity(backIntent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
                 startQRCode();
-
     }
 
     public void startQRCode() {new IntentIntegrator(this).initiateScan();

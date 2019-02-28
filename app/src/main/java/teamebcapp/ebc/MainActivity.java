@@ -18,6 +18,8 @@ import teamebcapp.ebc.common.utils.SharedPreferManager;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long   backPressedTime = 0;
     public Context context;
 /*    static   {
         System . loadLibrary ( "native-lib" ) ;
@@ -28,7 +30,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int FRAGMENT3 = 3;
 
     private ImageButton btn_tab1, btn_tab2, btn_tab3;
-
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            super.onBackPressed();
+            finish();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 다시 누르면 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

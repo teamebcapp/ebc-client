@@ -50,10 +50,7 @@ public class MyItem {
         Fax = fax;
     }
 
-    public void setCompany(String com) {
-
-        Company = com;
-    }
+    public void setCompany(String com) { Company = com; }
 
     public void setPosition(String position) {
         Position = position;

@@ -50,6 +50,8 @@ public class PutActivity extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                String userid1=response.body().UserId;
+                idText.setText(userid1);
                 String userName1 = response.body().Name;
                 nameText.setText(userName1);
                 String userCom1 = response.body().Company;

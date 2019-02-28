@@ -47,11 +47,8 @@ public interface BusinessCardService {
     Call<BusinessCard> PostBC(@Body BusinessCard user,
                               @Header("access_token") String access_token);
 
-    /*    @DELETE("owner/bc")
-        Call<BusinessCard>DeleteBC(@Body BusinessCard user,
-                                   @Header("access_token")String access_token);*/
     @DELETE("owner/bc")
-    Call<BusinessCard> DeleteBC(@Query("OwnerSeq") int OwnerSeq,
+    Call<BusinessCard> DeleteBC(@Body BusinessCard OwnerSeq,
                                 @Header("access_token") String access_token);
 
     @GET("owner/bc")
