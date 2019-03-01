@@ -29,6 +29,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:gravity="center"
+                android:textColor="#000000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
 
@@ -52,7 +53,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:inputType="textPersonName"
+
                     android:textColor="#000000" />
 
             </LinearLayout>

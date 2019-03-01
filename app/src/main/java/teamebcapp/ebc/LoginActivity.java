@@ -69,8 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String userPassword = passwordText.getText().toString();
 
 
-                UserService userServicelogin = teamebcapp.ebc.Retrofit.retrofit.create
-                        (UserService.class);
+                UserService userServicelogin = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
                 Call<User> call = userServicelogin.GetUser(userID,userPassword);
                 call.enqueue(new Callback<User>() {
                     @Override
@@ -88,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "로그인되었습니다", Toast.LENGTH_SHORT).show();
                                     Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                     LoginActivity.this.startActivity(loginIntent);
+                                    finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show();
                                 }
@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "자동로그인되었습니다", Toast.LENGTH_SHORT).show();
                                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(loginIntent);
+                                finish();
                             }
                         }
                     } catch (Exception e) {
