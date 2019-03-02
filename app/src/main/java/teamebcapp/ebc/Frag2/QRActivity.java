@@ -28,6 +28,7 @@ public class QRActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent backIntent = new Intent(QRActivity.this, MainActivity.class);
         QRActivity.this.startActivity(backIntent);
+        finish();
     }
 
     @Override
@@ -61,6 +62,7 @@ public class QRActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "명함교환이 완료되었습니다", Toast.LENGTH_LONG).show();
                             Intent loginIntent = new Intent(QRActivity.this, MainActivity.class);
                             QRActivity.this.startActivity(loginIntent);
+                            finish();
                         } catch (Exception e)
                         {
                         }
