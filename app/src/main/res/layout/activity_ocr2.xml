@@ -4,55 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ocr.OcrActivity2"
-    android:layout_alignParentTop="true">
+    tools:context=".ocr.OcrActivity2">
 
+    <Button
+        android:id="@+id/CopyCompleteButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
+
+    </Button>
 
     <ScrollView
-        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
+        android:layout_below="@+id/CopyCompleteButton">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/scrollView"
-                android:gravity="center"
-                android:text="처리시간" />
-
-            <TextView
-                android:id="@+id/tv_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/scrollView"
-                android:gravity="center"
-                android:text="@string/FirstMessage" />
-
-            <ImageView
-                android:id="@+id/iv_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+            <ListView
+                android:id="@+id/OcrResultList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
-
-
-
-    <Button
-        android:id="@+id/btn_OCR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="사진찍기" />
 
 </RelativeLayout>

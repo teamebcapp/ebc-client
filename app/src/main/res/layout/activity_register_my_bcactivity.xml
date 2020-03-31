@@ -17,8 +17,7 @@
             android:layout_width="350dp"
             android:layout_height="31dp"
             android:ems="10"
-            android:hint="아이디"
-            android:text="TextView" />
+            android:hint="아이디" />
 
         <EditText
             android:id="@+id/nameText"
@@ -26,7 +25,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="이름"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            />
 
         <EditText
             android:id="@+id/comText"
@@ -137,6 +137,31 @@
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="263dp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/ocrRegisterButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OCR로 등록하기"
+            android:textColor="#ffffff"
+            android:background="#000000"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ListView
+                    android:id="@+id/OcrResultList"
+                    android:layout_width="match_parent"
+                    android:layout_height="1000dp" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </ScrollView>

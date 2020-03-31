@@ -37,10 +37,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import teamebcapp.ebc.R;
+
+import static teamebcapp.ebc.ocr.ConstantDefine.SEND_RESULT_TO_REGISTERBC;
+import static teamebcapp.ebc.ocr.ConstantDefine.SEND_RESULT_TO_REGISTERMYBC;
 
 public class OcrActivity2 extends AppCompatActivity {
     // true  : Camera On  : 카메라로 직접 찍어 문자 인식
@@ -51,15 +56,11 @@ public class OcrActivity2 extends AppCompatActivity {
     private ProgressCircleDialog m_objProgressCircle = null; // 원형 프로그레스바
     private MessageHandler m_messageHandler;
 
-    private long m_start; // 처리시간 시작지점
-    private long m_end; //처리시간 끝지점
     private String mDataPath = ""; //언어데이터가 있는 경로
     private String mCurrentPhotoPath; // 사진 경로
     private final String[] mLanguageList = {"eng","kor"}; // 언어
     // View
     private Context mContext;
-    private TextView m_ocrTextView; // 결과 변환 텍스트
-    private ImageView m_ivImage; // 찍은 사진
     private Bitmap image; //사용되는 이미지
     private TextView m_tvTime; // 처리시간 표시 텍스트
 
@@ -71,26 +72,32 @@ public class OcrActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_ocr2);
         mContext = this;
 
-        m_ivImage = findViewById(R.id.iv_image);
-        m_ocrTextView = findViewById(R.id.tv_view);
-        m_tvTime = findViewById(R.id.tv_time);
         // 인식하기 위해 사진찍는 버튼
-        final Button m_btnOCR = findViewById(R.id.btn_OCR);
+        //final Button m_btnOCR = findViewById(R.id.btn_OCR);
 
-        m_btnOCR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                {
-                    if (CameraOnOffFlag) {
-                        dispatchTakePictureIntent();
-                    } else {
-                        m_start = System.currentTimeMillis();
-                        processImage(v);
-                    }
-                    m_tvTime.setText("처리시간");
-                }
-            }
-        });
+//        m_btnOCR.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                {
+//                    if (CameraOnOffFlag) {
+//                        dispatchTakePictureIntent();
+//                    } else {
+//                        m_start = System.currentTimeMillis();
+//                        processImage(v);
+//                    }
+//                    m_tvTime.setText("처리시간");
+//                }
+//            }
+//        });
+
+        //액티비티 넘어오면 바로 사진찍기
+        if (CameraOnOffFlag) {
+            dispatchTakePictureIntent();
+        } else {
+            processImage();
+        }
+
+
 
         m_objProgressCircle = new ProgressCircleDialog(this);
         m_messageHandler = new MessageHandler();
@@ -120,7 +127,6 @@ public class OcrActivity2 extends AppCompatActivity {
                 if ((resultCode == RESULT_OK) ) {
 
                     try {
-                        m_start = System.currentTimeMillis();
                         File file = new File(mCurrentPhotoPath);
                         Bitmap rotatedBitmap = null;
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
@@ -154,8 +160,8 @@ public class OcrActivity2 extends AppCompatActivity {
                             OCRThread ocrThread = new OCRThread(rotatedBitmap);
                             ocrThread.setDaemon(true);
                             ocrThread.start();
-                            m_ivImage.setImageBitmap(rotatedBitmap);// 카메라로 찍은 사진을 뷰에 표시한다.
-                            m_ocrTextView.setText(getResources().getString(R.string.LoadingMessage)); //인식된텍스트 표시
+//                            m_ivImage.setImageBitmap(rotatedBitmap);// 카메라로 찍은 사진을 뷰에 표시한다.
+//                            m_ocrTextView.setText(getResources().getString(R.string.LoadingMessage)); //인식된텍스트 표시
                         }
                     } catch (Exception e) {
                     }
@@ -187,8 +193,8 @@ public class OcrActivity2 extends AppCompatActivity {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 4;
 
-        int width = 1280; // 축소시킬 너비
-        int height = 720; // 축소시킬 높이
+        int width = 500; // 축소시킬 너비
+        int height = 500; // 축소시킬 높이
         float bmpWidth = bitmap.getWidth();
         float bmpHeight = bitmap.getHeight();
 
@@ -377,17 +383,22 @@ public class OcrActivity2 extends AppCompatActivity {
             switch (msg.what)
             {
                 case ConstantDefine.RESULT_OCR:
-                    TextView OCRTextView = findViewById(R.id.tv_view);
-                    OCRTextView.setText(String.valueOf(msg.obj)); //텍스트 변경
+                    String OCRresult=String.valueOf(msg.obj);
+                     //텍스트 변경
 
                     // 원형 프로그레스바 종료
                     if(m_objProgressCircle.isShowing() && m_objProgressCircle !=null)
                         m_objProgressCircle.dismiss();
                     ProgressFlag = false;
-                    m_end = System.currentTimeMillis();
-                    long time = (m_end - m_start)/1000;
-                    m_tvTime.setText("처리시간 : "+time+"초");
-                    Toast.makeText(mContext,getResources().getString(R.string.CompleteMessage),Toast.LENGTH_SHORT).show();
+
+                    //Toast.makeText(mContext,getResources().getString(R.string.CompleteMessage),Toast.LENGTH_SHORT).show();
+
+                    ArrayList<String> ocrResultList = new ArrayList<String>(Arrays.asList(OCRresult.split("\\n")));
+
+                    Intent intent=new Intent();
+                    intent.putExtra("list",ocrResultList);
+                    setResult(RESULT_OK,intent);
+                    finish();
                     break;
             }
         }
@@ -411,51 +422,9 @@ public class OcrActivity2 extends AppCompatActivity {
         m_Tess = new TessBaseAPI();
         m_Tess.init(mDataPath, lang);
     }
-    private void copyFiles2(String lang) {
-        try {
-            //location we want the file to be at
-            String filepath = mDataPath + "/tessdata/"+lang+".traineddata";
 
-            //get access to AssetManager
-            AssetManager assetManager = getAssets();
-
-            //open byte streams for reading/writing
-            InputStream instream = assetManager.open("tessdata/"+lang+".traineddata");
-            OutputStream outstream = new FileOutputStream(filepath);
-
-            //copy the file to the location specified by filepath
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = instream.read(buffer)) != -1) {
-                outstream.write(buffer, 0, read);
-            }
-            outstream.flush();
-            outstream.close();
-            instream.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void checkFile2(File dir,String lang) {
-        //directory does not exist, but we can successfully create it
-        if (!dir.exists()&& dir.mkdirs()){
-            copyFiles2(lang);
-        }
-        //The directory exists, but there is no data file in it
-        if(dir.exists()) {
-            String datafilepath = mDataPath+ "/tessdata/"+lang+".traineddata";
-            File datafile = new File(datafilepath);
-            if (!datafile.exists()) {
-                copyFiles2(lang);
-            }
-        }
-    }
     //Process an Image
-    public void processImage(View view) {
+    public void processImage() {
         OCRThread ocrThread = new OCRThread(image);
         ocrThread.setDaemon(true);
         ocrThread.start();
