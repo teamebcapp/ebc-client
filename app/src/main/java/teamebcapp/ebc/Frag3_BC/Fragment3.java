@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import teamebcapp.ebc.R;
-import teamebcapp.ebc.ocr.OcrActivity;
+import teamebcapp.ebc.ocr.OcrActivity2;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +52,7 @@ public class Fragment3 extends Fragment {
         ocrButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent ocrIntent= new Intent(getActivity(),OcrActivity.class);
+                Intent ocrIntent= new Intent(getActivity(), OcrActivity2.class);
                 getActivity().startActivity(ocrIntent);
             }
         });

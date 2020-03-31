@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
         {
             super.onBackPressed();
+            finish();
         }
         else
         {

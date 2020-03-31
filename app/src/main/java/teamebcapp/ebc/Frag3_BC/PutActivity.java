@@ -78,9 +78,7 @@ public class PutActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent cancelIntent = new Intent(PutActivity.this, MainActivity.class);
-                PutActivity.this.startActivity(cancelIntent);
+                finish();
             }
         });
 

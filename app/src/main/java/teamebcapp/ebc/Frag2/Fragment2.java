@@ -37,15 +37,9 @@ import teamebcapp.ebc.Frag2.QRActivity;
  * A simple {@link Fragment} subclass.
  */
 public class Fragment2 extends Fragment {
-  /*  String resultBcSeqStr;
-    int resultBcSeq, MyBcSeq;
-*/
+
     private static List<BusinessCard> bcs = null;
-
-
-    public Fragment2() {
-        // Required empty public constructor
-    }
+    public Fragment2() { }
 
 
     @Override
@@ -67,8 +61,6 @@ public class Fragment2 extends Fragment {
         btn_start_qrcode_reader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*startQRCode();*/
-
                 Intent QRIntent = new Intent(getActivity(), QRActivity.class);
                 getActivity().startActivity(QRIntent);
             }
@@ -113,7 +105,6 @@ public class Fragment2 extends Fragment {
 
                         @Override
                         public void onPageScrollStateChanged(int i) {
-
                         }
                     });
                 } catch (Exception e) {
