@@ -8,16 +8,22 @@
 
     <Button
         android:id="@+id/CopyCompleteButton"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"
+        android:background="#000000"
+        android:text="복사 완료"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp">
 
     </Button>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/CopyCompleteButton">
+        android:layout_below="@+id/CopyCompleteButton"
+        tools:ignore="ScrollViewCount">
 
         <LinearLayout
 
@@ -28,8 +34,20 @@
             <ListView
                 android:id="@+id/OcrResultList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="1000dp">
+
+            </ListView>
+
+            <ImageView
+                android:id="@+id/iv_ocrResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
         </LinearLayout>
+
+
     </ScrollView>
+
+
 
 </RelativeLayout>

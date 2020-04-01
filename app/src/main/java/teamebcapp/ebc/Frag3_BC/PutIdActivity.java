@@ -20,7 +20,7 @@ import teamebcapp.ebc.R;
 import teamebcapp.ebc.common.utils.SharedPreferManager;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
-
+//내 회원정보 수정
 public class PutActivity extends AppCompatActivity {
 
     public static Context context;
@@ -96,48 +96,46 @@ public class PutActivity extends AppCompatActivity {
                 final String userPhone = phoneText.getText().toString();
                 final String userEmail = mailText.getText().toString();
 
-                if (userPassword1 != null && userPassword2 != null) {
-                    if (userPassword1.equals(userPassword2)) { //checking whether passowords are same
+                if (userPassword1.equals(userPassword2)) { //checking whether passowords are same
 
-                        UserService userService = teamebcapp.ebc.Retrofit.retrofit.create
-                                (UserService.class);
-                        User user = new User(userID, userPassword1, userName, userCom, userPosi, userDuty, userPhone, userEmail);
-                        Call<User> call = userService.PutUser(user,InfoUser.access_token);
-                        call.enqueue(new Callback<User>() {
-                            @Override
-                            public void onResponse(Call<User> call, Response<User> response) {
-                                try {
-                                    if (response.isSuccessful() == true) {
-                                        if (response.body().UserSeq != 0) {
+                    UserService userService = teamebcapp.ebc.Retrofit.retrofit.create
+                            (UserService.class);
+                    User user = new User(userID, userPassword1, userName, userCom, userPosi, userDuty, userPhone, userEmail);
+                    Call<User> call = userService.PutUser(user,InfoUser.access_token);
+                    call.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            try {
+                                if (response.isSuccessful() == true) {
+                                    if (response.body().UserSeq != 0) {
 
-                                            String access_token = response.headers().get("access_token");
-                                            SharedPreferManager.setAccessToken(context , access_token);
+                                        String access_token = response.headers().get("access_token");
+                                        SharedPreferManager.setAccessToken(context , access_token);
 
-                                            InfoUser.access_token = access_token;
+                                        InfoUser.access_token = access_token;
 
-                                            Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다. 다시 로그인하세요", Toast.LENGTH_LONG).show();
-                                            Intent loginIntent = new Intent(PutActivity.this, LoginActivity.class);
-                                            PutActivity.this.startActivity(loginIntent);
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "계정에 문제가 있습니다", Toast.LENGTH_SHORT).show();
-                                        }
+                                        Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다. 다시 로그인하세요", Toast.LENGTH_LONG).show();
+                                        Intent loginIntent = new Intent(PutActivity.this, LoginActivity.class);
+                                        PutActivity.this.startActivity(loginIntent);
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "서버에 문제가 있습니다", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "계정에 문제가 있습니다", Toast.LENGTH_SHORT).show();
                                     }
-                                } catch (Exception e) {
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "서버에 문제가 있습니다", Toast.LENGTH_SHORT).show();
                                 }
-
+                            } catch (Exception e) {
                             }
 
+                        }
 
-                            @Override
-                            public void onFailure(Call<User> call, Throwable t) {
-                                // handle failure
-                                call.cancel();
-                            }
-                        });
-                    }
-                }else {Toast.makeText(getApplicationContext(), "비밀번호를 입력하십시오", Toast.LENGTH_SHORT).show();}
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            // handle failure
+                            call.cancel();
+                        }
+                    });
+                }
             }
         });
     }

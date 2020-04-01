@@ -22,7 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#Ffffff"
+        android:layout_margin="10sp"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
         android:text="LOGOUT" />
 
     <LinearLayout

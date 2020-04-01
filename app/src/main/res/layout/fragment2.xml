@@ -21,22 +21,34 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/blueButton"
+                    android:id="@+id/StartQrcodeReaderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
                     android:background="#000000"
-                    android:textColor="#ffffff"
-                    android:text="블루투스" />
+                    android:text="명함등록"
+                    android:textColor="#ffffff" />
 
                 <Button
-                    android:id="@+id/btn_start_qrcode_reader"
+                    android:id="@+id/putBCButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
                     android:background="#000000"
-                    android:textColor="#ffffff"
-                    android:text="명함등록" />
+                    android:text="내 명함 수정"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/deleteBCButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
+                    android:background="#000000"
+                    android:text="내 명함 삭제"
+                    android:textColor="#ffffff" />
             </LinearLayout>
 
             <LinearLayout

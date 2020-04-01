@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ocr.OcrActivity2"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegisterIDActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Frag3_BC.RegisterMyBCActivity" />
-        <activity android:name=".Frag3_BC.ListBCActivity" />
-        <activity android:name=".Frag3_BC.PutActivity" />
+        <activity android:name=".Frag3_BC.PutIdActivity" />
         <activity android:name=".Frag2.QRActivity" />
 
         <provider
