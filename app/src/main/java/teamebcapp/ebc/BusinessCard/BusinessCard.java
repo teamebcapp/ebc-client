@@ -41,4 +41,8 @@ public class BusinessCard {
         this.Fax = Fax;
         this.Address = Address;
     }
+
+    public BusinessCard() {
+
+    }
 }

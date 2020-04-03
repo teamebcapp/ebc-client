@@ -1,6 +1,8 @@
 package teamebcapp.ebc.ocr;
 
 import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,10 +24,13 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
@@ -44,9 +49,6 @@ import java.util.List;
 
 import teamebcapp.ebc.R;
 
-import static teamebcapp.ebc.ocr.ConstantDefine.SEND_RESULT_TO_REGISTERBC;
-import static teamebcapp.ebc.ocr.ConstantDefine.SEND_RESULT_TO_REGISTERMYBC;
-
 public class OcrActivity2 extends AppCompatActivity {
     // true  : Camera On  : 카메라로 직접 찍어 문자 인식
     // false : Camera Off : 샘플이미지를 로드하여 문자 인식
@@ -62,9 +64,13 @@ public class OcrActivity2 extends AppCompatActivity {
     // View
     private Context mContext;
     private Bitmap image; //사용되는 이미지
-    private TextView m_tvTime; // 처리시간 표시 텍스트
 
     private boolean ProgressFlag = false; // 프로그레스바 상태 플래그
+
+
+    ArrayAdapter<String> arrayAdapter;
+    ListView lvOcrResultList;
+    ImageView m_orcResultImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,23 +78,16 @@ public class OcrActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_ocr2);
         mContext = this;
 
-        // 인식하기 위해 사진찍는 버튼
-        //final Button m_btnOCR = findViewById(R.id.btn_OCR);
+        m_orcResultImage=findViewById(R.id.iv_ocrResult);
 
-//        m_btnOCR.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                {
-//                    if (CameraOnOffFlag) {
-//                        dispatchTakePictureIntent();
-//                    } else {
-//                        m_start = System.currentTimeMillis();
-//                        processImage(v);
-//                    }
-//                    m_tvTime.setText("처리시간");
-//                }
-//            }
-//        });
+        Button CopyCompleteButton =(Button) findViewById(R.id.CopyCompleteButton);
+
+        CopyCompleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //액티비티 넘어오면 바로 사진찍기
         if (CameraOnOffFlag) {
@@ -97,7 +96,7 @@ public class OcrActivity2 extends AppCompatActivity {
             processImage();
         }
 
-
+        lvOcrResultList =(ListView) findViewById(R.id.OcrResultList);
 
         m_objProgressCircle = new ProgressCircleDialog(this);
         m_messageHandler = new MessageHandler();
@@ -113,6 +112,8 @@ public class OcrActivity2 extends AppCompatActivity {
             image = BitmapFactory.decodeResource(getResources(), R.drawable.sampledata); //샘플이미지파일
             Test();
         }
+
+
     }
 
     @Override
@@ -120,7 +121,7 @@ public class OcrActivity2 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case ConstantDefine.PERMISSION_CODE:
-                Toast.makeText(this, "권한이 허용되었습니다.", Toast.LENGTH_SHORT).show();
+                //ToastmakeText(this, "권한이 허용되었습니다.", //ToastLENGTH_SHORT).show();
                 break;
             case ConstantDefine.ACT_TAKE_PIC:
                 //카메라로 찍은 사진을 받는다.
@@ -160,8 +161,7 @@ public class OcrActivity2 extends AppCompatActivity {
                             OCRThread ocrThread = new OCRThread(rotatedBitmap);
                             ocrThread.setDaemon(true);
                             ocrThread.start();
-//                            m_ivImage.setImageBitmap(rotatedBitmap);// 카메라로 찍은 사진을 뷰에 표시한다.
-//                            m_ocrTextView.setText(getResources().getString(R.string.LoadingMessage)); //인식된텍스트 표시
+                            m_orcResultImage.setImageBitmap(rotatedBitmap);
                         }
                     } catch (Exception e) {
                     }
@@ -193,8 +193,8 @@ public class OcrActivity2 extends AppCompatActivity {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 4;
 
-        int width = 500; // 축소시킬 너비
-        int height = 500; // 축소시킬 높이
+        int width = 1280; // 축소시킬 너비
+        int height = 720; // 축소시킬 높이
         float bmpWidth = bitmap.getWidth();
         float bmpHeight = bitmap.getHeight();
 
@@ -391,14 +391,10 @@ public class OcrActivity2 extends AppCompatActivity {
                         m_objProgressCircle.dismiss();
                     ProgressFlag = false;
 
-                    //Toast.makeText(mContext,getResources().getString(R.string.CompleteMessage),Toast.LENGTH_SHORT).show();
+                    ////ToastmakeText(mContext,getResources().getString(R.string.CompleteMessage),//ToastLENGTH_SHORT).show();
 
                     ArrayList<String> ocrResultList = new ArrayList<String>(Arrays.asList(OCRresult.split("\\n")));
-
-                    Intent intent=new Intent();
-                    intent.putExtra("list",ocrResultList);
-                    setResult(RESULT_OK,intent);
-                    finish();
+                    getOcrResultList(ocrResultList);
                     break;
             }
         }
@@ -430,4 +426,38 @@ public class OcrActivity2 extends AppCompatActivity {
         ocrThread.start();
     }
 
+    private void getOcrResultList(ArrayList<String> list){
+
+        // 어댑터 생성
+        arrayAdapter = new ArrayAdapter<String>(OcrActivity2.this,
+                android.R.layout.simple_list_item_1, list);
+
+        // 어댑터 설정
+        lvOcrResultList = (ListView) findViewById(R.id.OcrResultList);
+        lvOcrResultList.setAdapter(arrayAdapter);
+
+
+        //OcrResultList.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // 하나의 항목만 선택할 수 있도록 설정
+        arrayAdapter.notifyDataSetChanged();
+
+        lvOcrResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //클릭한 아이템의 문자열을 가져옴
+                String selected_item = (String) parent.getItemAtPosition(position);
+                //클립보드 사용 코드
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("COPY" + position, selected_item); //클립보드에 ID라는 이름표로 id 값을 복사하여 저장
+                clipboardManager.setPrimaryClip(clipData);
+
+                //복사가 되었다면 토스트메시지 노출
+                //ToastmakeText(OcrActivity2.this, "ID가 복사되었습니다.", //ToastLENGTH_SHORT).show();
+
+                String TAG = "MYACTIVITY";
+                Log.i(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~복사됨~~~~~~~~~~~~~~~~~~~~~~~~~`");
+
+            }
+        });
+    }
 }

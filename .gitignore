@@ -10,3 +10,7 @@
 /captures
 .externalNativeBuild
 /opencv
+
+app/.cxx/
+
+app/src/main/assets/

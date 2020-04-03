@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int FRAGMENT2 = 2;
     private final int FRAGMENT3 = 3;
 
-    private ImageButton btn_tab1, btn_tab2, btn_tab3;
     @Override
     public void onBackPressed() {
         long tempTime = System.currentTimeMillis();
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
         {
             backPressedTime = tempTime;
-            Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 다시 누르면 종료됩니다", Toast.LENGTH_SHORT).show();
+            //ToastmakeText(getApplicationContext(), "뒤로가기 버튼을 다시 누르면 종료됩니다", //ToastLENGTH_SHORT).show();
         }
     }
     @Override
@@ -52,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // 위젯에 대한 참조
         Button logoutButton=findViewById(R.id.logoutButton);
-        btn_tab1 =findViewById(R.id.btn_tab1);
-        btn_tab2 =findViewById(R.id.btn_tab2);
-        btn_tab3 =findViewById(R.id.btn_tab3);
+        ImageButton btn_tab1 = findViewById(R.id.btn_tab1);
+        ImageButton btn_tab2 = findViewById(R.id.btn_tab2);
+        ImageButton btn_tab3 = findViewById(R.id.btn_tab3);
         // 탭 버튼에 대한 리스너 연결
         logoutButton.setOnClickListener(this);
         btn_tab1.setOnClickListener(this);
@@ -95,9 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 SharedPreferManager.removeAllPreferences(LoginActivity.context);
 
-                Toast.makeText(getApplicationContext(), "로그아웃되었습니다", Toast.LENGTH_SHORT).show();
-                Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
-                MainActivity.this.startActivity(logoutIntent);
+                //ToastmakeText(getApplicationContext(), "로그아웃되었습니다", //ToastLENGTH_SHORT).show();
+                finish();
 
                 break;
         }

@@ -7,8 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import teamebcapp.ebc.BusinessCard.BusinessCard;
 import teamebcapp.ebc.BusinessCard.BusinessCardService;
-import teamebcapp.ebc.InfoUser;
+import teamebcapp.ebc.UserInfo;
 import teamebcapp.ebc.R;
 
 public class Fragment1 extends Fragment {
@@ -28,7 +26,7 @@ public class Fragment1 extends Fragment {
     }
 
     private RecyclerView recyclerView;
-    private MyAdapter myAdapter;
+    private OtherBCAdapter otherBCAdapter;
 
 
     public Fragment1() {
@@ -45,7 +43,7 @@ public class Fragment1 extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        myAdapter = new MyAdapter();
+        otherBCAdapter = new OtherBCAdapter();
 
         getListBCs();
 /*
@@ -82,7 +80,7 @@ public class Fragment1 extends Fragment {
 
     private void getListBCs() {
         BusinessCardService businessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-        Call<List<BusinessCard>> call = businessCardService.GetBCs(InfoUser.transuserID, InfoUser.access_token);
+        Call<List<BusinessCard>> call = businessCardService.GetBCs(UserInfo.transuserID, UserInfo.access_token);
 
         call.enqueue(new Callback<List<BusinessCard>>() {
             @Override
@@ -91,12 +89,13 @@ public class Fragment1 extends Fragment {
                 try {
                     List<BusinessCard> result = response.body();
 
+                    assert result != null;
                     int i = 0, resultSize = result.size();
                     while (resultSize > 0) {
-                        myAdapter.addItem(result.get(i).OwnerSeq,result.get(i).OwnerBcSeq,result.get(i).BcSeq, result.get(i).UserId, result.get(i).Name, result.get(i).Company,
+                        otherBCAdapter.addItem(result.get(i).OwnerSeq,result.get(i).OwnerBcSeq,result.get(i).BcSeq, result.get(i).UserId, result.get(i).Name, result.get(i).Company,
                                 result.get(i).Position, result.get(i).Duty, result.get(i).Phone, result.get(i).Email, result.get(i).Depart,
                                 result.get(i).Team, result.get(i).Tel, result.get(i).Fax, result.get(i).Address);
-                        recyclerView.setAdapter(myAdapter);
+                        recyclerView.setAdapter(otherBCAdapter);
                         resultSize--;
                         i++;
                     }

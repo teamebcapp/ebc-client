@@ -35,11 +35,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/backButton"
             android:layout_alignStart="@+id/idText"
+            android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:layout_margin="10dp"
             android:text="*"
             android:textColor="#FF0000"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/passwordText"
@@ -61,7 +62,7 @@
             android:layout_margin="10dp"
             android:text="*"
             android:textColor="#FF0000"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/passwordText2"
@@ -91,7 +92,7 @@
             android:layout_margin="10dp"
             android:text="*"
             android:textColor="#FF0000"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/nameText"

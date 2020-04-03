@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import teamebcapp.ebc.R;
-import teamebcapp.ebc.ocr.OcrActivity2;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,11 +27,10 @@ public class Fragment3 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment3, null);
 
-        Button registerBC = view.findViewById(R.id.registerMyBC);
+        Button registerMyBC = view.findViewById(R.id.registerMyBC);
         Button reviseButton =view.findViewById(R.id.reviseButton);
-        Button ocrButton = view.findViewById(R.id.OcrButton);
 
-        registerBC.setOnClickListener(new View.OnClickListener() {
+        registerMyBC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent registerMyBCIntent = new Intent(getActivity(), RegisterMyBCActivity.class);
@@ -44,18 +42,12 @@ public class Fragment3 extends Fragment {
         reviseButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent reviseIntent= new Intent(getActivity(),PutActivity.class);
+                Intent reviseIntent= new Intent(getActivity(), PutIdActivity.class);
                 getActivity().startActivity(reviseIntent);
             }
         });
 
-        ocrButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent ocrIntent= new Intent(getActivity(), OcrActivity2.class);
-                getActivity().startActivity(ocrIntent);
-            }
-        });
+
         return view;
 
     }

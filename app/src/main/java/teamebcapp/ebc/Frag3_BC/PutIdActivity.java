@@ -13,22 +13,21 @@ import android.widget.Toast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import teamebcapp.ebc.InfoUser;
+import teamebcapp.ebc.UserInfo;
 import teamebcapp.ebc.LoginActivity;
-import teamebcapp.ebc.MainActivity;
 import teamebcapp.ebc.R;
 import teamebcapp.ebc.common.utils.SharedPreferManager;
 import teamebcapp.ebc.user.User;
 import teamebcapp.ebc.user.UserService;
 //내 회원정보 수정
-public class PutActivity extends AppCompatActivity {
+public class PutIdActivity extends AppCompatActivity {
 
     public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_put);
+        setContentView(R.layout.activity_put_id);
         context = this;
 
         final TextView idText = findViewById(R.id.idText);
@@ -46,7 +45,7 @@ public class PutActivity extends AppCompatActivity {
 
         ///회원가입시 정보가져오기
         UserService userService = teamebcapp.ebc.Retrofit.retrofit.create(UserService.class);
-        Call<User> call = userService.GetUserInfo(InfoUser.transuserID,InfoUser.access_token);
+        Call<User> call = userService.GetUserInfo(UserInfo.transuserID, UserInfo.access_token);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -86,7 +85,7 @@ public class PutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String userID = idText.getText().toString();
-                idText.setText(InfoUser.transuserID);
+                idText.setText(UserInfo.transuserID);
                 final String userPassword1 = passwordText.getText().toString();
                 final String userPassword2 = passwordText2.getText().toString();
                 final String userName = nameText.getText().toString();
@@ -101,27 +100,29 @@ public class PutActivity extends AppCompatActivity {
                     UserService userService = teamebcapp.ebc.Retrofit.retrofit.create
                             (UserService.class);
                     User user = new User(userID, userPassword1, userName, userCom, userPosi, userDuty, userPhone, userEmail);
-                    Call<User> call = userService.PutUser(user,InfoUser.access_token);
+                    Call<User> call = userService.PutUser(user, UserInfo.access_token);
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             try {
-                                if (response.isSuccessful() == true) {
+                                if (response.isSuccessful()) {
+                                    assert response.body() != null;
                                     if (response.body().UserSeq != 0) {
 
                                         String access_token = response.headers().get("access_token");
                                         SharedPreferManager.setAccessToken(context , access_token);
 
-                                        InfoUser.access_token = access_token;
+                                        UserInfo.access_token = access_token;
 
-                                        Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다. 다시 로그인하세요", Toast.LENGTH_LONG).show();
-                                        Intent loginIntent = new Intent(PutActivity.this, LoginActivity.class);
-                                        PutActivity.this.startActivity(loginIntent);
+                                        //ToastmakeText(getApplicationContext(), "회원정보가 수정되었습니다. 다시 로그인하세요", //ToastLENGTH_LONG).show();
+                                        Intent loginIntent = new Intent(PutIdActivity.this, LoginActivity.class);
+                                        PutIdActivity.this.startActivity(loginIntent);
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "계정에 문제가 있습니다", Toast.LENGTH_SHORT).show();
+                                        //ToastmakeText(getApplicationContext(), "계정에 문제가 있습니다", //ToastLENGTH_SHORT).show();
                                     }
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "서버에 문제가 있습니다", Toast.LENGTH_SHORT).show();
+
+                                    //ToastmakeText(getApplicationContext(), "서버에 문제가 있습니다", //ToastLENGTH_SHORT).show();
                                 }
                             } catch (Exception e) {
                             }

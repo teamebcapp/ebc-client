@@ -4,28 +4,29 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import teamebcapp.ebc.BusinessCard.BusinessCard;
 import teamebcapp.ebc.BusinessCard.BusinessCardService;
-import teamebcapp.ebc.InfoUser;
+import teamebcapp.ebc.UserInfo;
 import teamebcapp.ebc.R;
+import teamebcapp.ebc.common.global.varForDeleteOtherBC;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
+public class OtherBCAdapter extends RecyclerView.Adapter<OtherBCAdapter.ItemViewHolder> {
 
     private ArrayList<MyItem> mItems = new ArrayList<>();
     private Context context;
@@ -60,25 +61,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
     /* 아이템 데이터 추가를 위한 함수.*/
     public void addItem(int OwnerSeq, int OwnerBcSeq, int BcSeq, String UserId, String Name, String Company, String Position, String Duty, String Phone, String Email,
                         String Depart, String Team, String Tel, String Fax, String Address) {
-        MyItem addInfo;
-        addInfo = new MyItem();
-        addInfo.setOwnerBcSeq(OwnerBcSeq);
-        addInfo.setOwnerSeq(OwnerSeq);
-        addInfo.setBcSeq(BcSeq);
-        addInfo.setUserId(UserId);
-        addInfo.setName(Name);
-        addInfo.setCompany(Company);
-        addInfo.setPosition(Position);
-        addInfo.setDuty(Duty);
-        addInfo.setPhone(Phone);
-        addInfo.setEmail(Email);
-        addInfo.setDepart(Depart);
-        addInfo.setTeam(Team);
-        addInfo.setTel(Tel);
-        addInfo.setFax(Fax);
-        addInfo.setAddress(Address);
+        MyItem OtherBCInfo;
+        OtherBCInfo = new MyItem();
+        OtherBCInfo.setOwnerBcSeq(OwnerBcSeq);
+        OtherBCInfo.setOwnerSeq(OwnerSeq);
+        OtherBCInfo.setBcSeq(BcSeq);
+        OtherBCInfo.setUserId(UserId);
+        OtherBCInfo.setName(Name);
+        OtherBCInfo.setCompany(Company);
+        OtherBCInfo.setPosition(Position);
+        OtherBCInfo.setDuty(Duty);
+        OtherBCInfo.setPhone(Phone);
+        OtherBCInfo.setEmail(Email);
+        OtherBCInfo.setDepart(Depart);
+        OtherBCInfo.setTeam(Team);
+        OtherBCInfo.setTel(Tel);
+        OtherBCInfo.setFax(Fax);
+        OtherBCInfo.setAddress(Address);
 
-        mItems.add(addInfo);
+        mItems.add(OtherBCInfo);
     }
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
@@ -90,11 +91,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
         private TextView comText;
         private TextView phoneText;
         private TextView teamText;
-        TextView getnameText;
-        TextView getposiText;
-        TextView getphoneText;
-        TextView getdutyText;
-        TextView getcomText;
+        TextView tv_nameText;
+        TextView tv_position;
+        TextView tv_phone;
+        TextView tv_duty;
+        TextView tv_company;
         private Button getButton;
         private Button deleteButton;
         private MyItem myItem;
@@ -109,16 +110,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
             comText = itemView.findViewById(R.id.itemcomText);
             phoneText = itemView.findViewById(R.id.itemphoneText);
 
-            getposiText = itemView.findViewById(R.id.getposiText);
-            getnameText = itemView.findViewById(R.id.getnameText);
-            getcomText = itemView.findViewById(R.id.getcomText);
-            getdutyText = itemView.findViewById(R.id.getdutyText);
-            getphoneText = itemView.findViewById(R.id.getphoneText);
+            tv_position = itemView.findViewById(R.id.tv_detail_postion);
+            tv_nameText = itemView.findViewById(R.id.tv_detail_name);
+            tv_company = itemView.findViewById(R.id.tv_detail_company);
+            tv_duty = itemView.findViewById(R.id.tv_detail_duty);
+            tv_phone = itemView.findViewById(R.id.getphoneText);
 
             linearView = itemView.findViewById(R.id.linearView);
-            getButton = itemView.findViewById(R.id.getButton);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
-            getLayout = itemView.findViewById(R.id.getLayout);
+            getButton = itemView.findViewById(R.id.getDetailOtherBCButton);
+            deleteButton = itemView.findViewById(R.id.deleteOtherBCButton);
+            getLayout = itemView.findViewById(R.id.ly_detail);
 
         }
 
@@ -133,11 +134,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
             comText.setText(myItem.getCompany());
             phoneText.setText(myItem.getPhone());
 
-            getposiText.setText(myItem.getPosition());
-            getdutyText.setText(myItem.getTeam());
-            getnameText.setText(myItem.getName());
-            getcomText.setText(myItem.getCompany());
-            getphoneText.setText(myItem.getPhone());
+            tv_position.setText(myItem.getPosition());
+            tv_duty.setText(myItem.getTeam());
+            tv_nameText.setText(myItem.getName());
+            tv_company.setText(myItem.getCompany());
+            tv_phone.setText(myItem.getPhone());
 
             itemView.setOnClickListener(this);
             getButton.setOnClickListener(this);
@@ -167,7 +168,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
                     // 클릭된 position 저장
                     prePosition = position;
                     break;
-                case R.id.getButton:
+                case R.id.getDetailOtherBCButton:
 
                     if (selectedItemsedit.get(position)) {
                         // 펼쳐진 Item을 클릭 시
@@ -186,25 +187,39 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
                     prePostionedit = position;
 
                     break;
-                case R.id.deleteButton:
-                    BusinessCard OwnerSeq = new BusinessCard(myItem.OwnerSeq);
-                    BusinessCardService deleteBusinessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
-                    Call<BusinessCard> deleteCall = deleteBusinessCardService.DeleteBC(OwnerSeq, InfoUser.access_token);
-                    deleteCall.enqueue(new Callback<BusinessCard>() {
+                case R.id.deleteOtherBCButton:
+                    int OwnerSeq = myItem.OwnerSeq;
+                    varForDeleteOtherBC var=new varForDeleteOtherBC(OwnerSeq);
+                    BusinessCardService businessCardService = teamebcapp.ebc.Retrofit.retrofit.create(BusinessCardService.class);
+                    Call<Map<String,Object>> deleteCall = businessCardService.DeleteOtherBC(var, UserInfo.access_token);
+                    deleteCall.enqueue(new Callback<Map<String,Object>>() {
                         @Override
-                        public void onResponse(Call<BusinessCard> call, Response<BusinessCard> response) {
+                        public void onResponse(Call<Map<String,Object>> call, Response<Map<String,Object>> response) {
 
                             try {
-                                if (response.isSuccessful() == true) {
-                                    Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                                } else
+                                if (response.isSuccessful()) {
+                                    if(Objects.equals(response.body().get("ResultCode"), "200")){
+                                        Toast.makeText(context, "명함이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Log.i("ASDF","~~~~~~~~~~~~~~~~~~~~~삭제됨");
+                                        mItems.remove(getAdapterPosition());
+                                        notifyItemChanged(getAdapterPosition());
+                                        notifyItemChanged(getAdapterPosition(),mItems.size());
+                                    }
+                                    else{
+                                        Toast.makeText(context, "request code가 정확하지 않습니다", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } else {
                                     Toast.makeText(context, "삭제에 실패하였습니다", Toast.LENGTH_SHORT).show();
+                                    Log.i("ASDF", "~~~~~~~~~~~~~~~~~~~~~삭제실패~~~~~");
+                                }
                             } catch (Exception e) {
+                                Log.i("ASDF","~~~~~~~~~~~~~~~~~~~~~오류남~~~~");
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<BusinessCard> call, Throwable t) {
+                        public void onFailure(Call<Map<String,Object>> call, Throwable t) {
 
                             call.cancel();
                         }
@@ -270,10 +285,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ItemViewHolder> {
             // Animation start
             va.start();
         }
-
-    }
-
-    private void getBC(int ownerseq) {
 
     }
 }

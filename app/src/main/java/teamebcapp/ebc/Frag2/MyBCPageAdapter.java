@@ -1,6 +1,7 @@
-package teamebcapp.ebc.MyBCFrag;
+package teamebcapp.ebc.Frag2;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -17,14 +18,13 @@ import java.util.List;
 import teamebcapp.ebc.BusinessCard.BusinessCard;
 import teamebcapp.ebc.R;
 
-public class BCPageAdapter extends PagerAdapter {
+public class MyBCPageAdapter extends PagerAdapter {
     //int mNumOfTabs;
-    List<BusinessCard> bcs = new ArrayList<BusinessCard>();
+    private List<BusinessCard> bcs = new ArrayList<BusinessCard>();
 
-    private LayoutInflater inflater;
     private Context context;
 
-    public BCPageAdapter(Context context){
+    public MyBCPageAdapter(Context context){
         this.context = context;
     }
     public void setBusinessCards(List<BusinessCard> bcs) {
@@ -43,9 +43,10 @@ public class BCPageAdapter extends PagerAdapter {
         return view == ((LinearLayout) object);
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        inflater = (LayoutInflater) context.getSystemService
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.my_bc_fregment, container, false);
 
@@ -73,5 +74,8 @@ public class BCPageAdapter extends PagerAdapter {
     public int getCount() {
         return bcs.size();
     }
+
+    @Override
+    public int getItemPosition(Object object) { return POSITION_NONE;}
 
 }
